@@ -1,19 +1,39 @@
-/* need convert this to .map I think */
-
-const AboutMeMini = () => {
+const AboutMeMini = ({title, subtitle, skills}) => {
     return (
-        <div className="about-me-mini-container">
+        <div className="about-me-mini">
             <div className="title-description-container">
-                <h3>Sample H3 (can be optional)</h3>
+                {(title !== null) &&
+                    <h3>{title}</h3>
+                }
+                {(subtitle !== null) &&
+                    <p>{subtitle}</p>
+                }
             </div>
             <ul>
-                <li>Bullet 1</li>
-                <li>Bullet 2</li>
-                <li>Bullet 3</li>
-                <li>As many bullets as you want baby</li>
+                {skills.map((skill) => (
+                    <li key={skill}>{skill}</li>
+                ))}   
+            </ul>
+        </div>
+    )
+}
+
+export default AboutMeMini;
+
+/*
+const AboutMeMini = () => {
+    return (
+        <div className="about-me-mini">
+            <div className="title-description-container">
+                <h3>Sample H3 (can be optional)</h3>
+                <p>Sample description (can be optional)</p>
+            </div>
+            <ul>
+                <li>1ee</li>
+                <li>2ee</li>
+                <li>3ee</li>
             </ul>
         </div>
     );
 }
- 
-export default AboutMeMini;
+*/
