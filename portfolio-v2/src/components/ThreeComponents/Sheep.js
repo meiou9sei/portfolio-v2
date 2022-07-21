@@ -7,10 +7,21 @@ import { useFrame } from '@react-three/fiber';
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 export default function Sheep({ ...props }) {
   const mesh = useRef();
   const { nodes } = useGLTF("/sheepModel.gltf");
-  const materials = new THREE.MeshStandardMaterial({ color: "red" })
+  const materials = new THREE.MeshStandardMaterial({ color: getRandomColor() })
+  
+  {/* makes sheep rotate */}
   useFrame((state, delta) => (mesh.current.rotation.y += 0.01));
 
   return (
