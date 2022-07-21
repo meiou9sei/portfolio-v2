@@ -13,7 +13,8 @@ function getRandomInt(min, max) {
 //spawns a random number of sheep on canvas
 let SheepGroup = [];
 for (let i = 0; i < getRandomInt(1, 10); i++) {
-    SheepGroup.push(<Sheep key={i} />)
+    SheepGroup.push(<Sheep key={i} position={ [getRandomInt(-3, 3), 0, getRandomInt(-3, 3)] }
+    />)
 }
 
 const CanvasContainer = () => {
