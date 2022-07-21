@@ -4,12 +4,23 @@ import Box2 from "./Box2";
 import Sheep from "./Sheep";
 import CameraController from "./CameraController";
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); 
+}
+
+//spawns a random number of sheep on canvas
+let SheepGroup = [];
+for (let i = 0; i < getRandomInt(1, 10); i++) {
+    SheepGroup.push(<Sheep key={i} />)
+}
 
 const CanvasContainer = () => {
     return ( 
         <div id="canvas-container" style={{ height: '500px' }}>
             <Canvas>
-                {/* <CameraController /> */}
+                <CameraController />
 
                 {/* lights */}
                 <ambientLight intensity={0.1} />
@@ -18,8 +29,9 @@ const CanvasContainer = () => {
                 {/* objects */}
                 {/* <Box /> */}
                 {/* <Box2 /> */}
-                <Sheep />
                 
+                {SheepGroup}
+
             </Canvas>
         </div>
     );

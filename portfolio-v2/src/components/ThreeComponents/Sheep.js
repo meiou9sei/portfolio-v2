@@ -8,13 +8,31 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
 }
+
+const min = -5;
+const max = 5;
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); 
+}
+/*
+function getRandomIntArray(n) {
+    let array = [];
+    for (let i = 0; i < n; i++) {
+        array.push(getRandomInt(min, max));
+    }
+    return array;
+}
+*/
 
 export default function Sheep({ ...props }) {
   const mesh = useRef();
@@ -31,7 +49,7 @@ export default function Sheep({ ...props }) {
         receiveShadow
         geometry={nodes.Sheep.geometry}
         material={materials}
-        position={[0, -0.5, 3.5]}
+        position={ [getRandomInt(-3, 3), 0, getRandomInt(-3, 3)] }
       />
     </group>
   );
