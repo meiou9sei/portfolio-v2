@@ -37,14 +37,13 @@ function getRandomIntArray(n) {
 export default function Sheep({ ...props }) {
   const ref = useRef();
   const { nodes } = useGLTF("/sheepModel.gltf");
-  const materials = new THREE.MeshStandardMaterial({ color: getRandomColor() })
+  const randomColor = getRandomColor();
   
   {/* makes sheep rotate */}
   useFrame((state, delta) => (ref.current.rotation.y += 0.01));
 
-  // Hold state for hovered and clicked events
-  const [hovered, hover] = useState(false);
-  const [clicked, click] = useState(false);
+  // Upon click, changes color
+  const [cowColor, setCowColor] = useState(randomColor);
 
   return (
       <mesh 
@@ -54,9 +53,8 @@ export default function Sheep({ ...props }) {
         receiveShadow
         geometry={nodes.Sheep.geometry}
         /* material={materials} */
-        onPointerOver={(event) => hover(true)}
-        onPointerOut={(event) => hover(false)}>
-        <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+        onClick={() => setCowColor(cowColor => getRandomColor())}>
+        <meshStandardMaterial color={cowColor} />
       </mesh>
   );
 }
