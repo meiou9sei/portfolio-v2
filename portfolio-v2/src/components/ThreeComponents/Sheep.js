@@ -16,6 +16,7 @@ function getRandomColor() {
     return color;
 }
 
+/*
 const min = -5;
 const max = 5;
 
@@ -24,7 +25,7 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min); 
 }
-/*
+
 function getRandomIntArray(n) {
     let array = [];
     for (let i = 0; i < n; i++) {
@@ -43,7 +44,7 @@ export default function Sheep({ ...props }) {
   useFrame((state, delta) => (ref.current.rotation.y += 0.01));
 
   // Upon click, changes color
-  const [cowColor, setCowColor] = useState(randomColor);
+  const [sheepColor, setSheepColor] = useState(randomColor);
 
   return (
       <mesh 
@@ -53,8 +54,8 @@ export default function Sheep({ ...props }) {
         receiveShadow
         geometry={nodes.Sheep.geometry}
         /* material={materials} */
-        onClick={() => setCowColor(cowColor => getRandomColor())}>
-        <meshStandardMaterial color={cowColor} />
+        onClick={() => setSheepColor(sheepColor => getRandomColor())}>
+        <meshStandardMaterial color={sheepColor} />
       </mesh>
   );
 }
