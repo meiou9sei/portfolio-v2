@@ -2,6 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import Box from "./Box";
 import Box2 from "./Box2";
 import Sheep from "./Sheep";
+import AnimatedSheep from "./AnimatedSheep";
 import CameraController from "./CameraController";
 
 function getRandomInt(min, max) {
@@ -10,10 +11,14 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min); 
 }
 
+function getRandomNum(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
 //spawns a random number of sheep on canvas
 let SheepGroup = [];
 for (let i = 0; i < getRandomInt(1, 10); i++) {
-    SheepGroup.push(<Sheep key={i} position={ [getRandomInt(-3, 3), 0, getRandomInt(-3, 3)] }
+    SheepGroup.push(<Sheep key={i} position={ [getRandomNum(-3, 3), 0, getRandomNum(-3, 3)] }
     />)
 }
 
@@ -31,7 +36,11 @@ const CanvasContainer = () => {
                 {/* <Box /> */}
                 {/* <Box2 /> */}
                 
-                {SheepGroup}
+                {/* Spawn multiple sheep */}
+                {/* {SheepGroup} */}
+
+                {/* Spawn one sheep */}
+                <AnimatedSheep />
 
             </Canvas>
         </div>
