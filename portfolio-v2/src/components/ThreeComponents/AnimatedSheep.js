@@ -22,7 +22,6 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min); 
 }
 
-
 export default function Model({ ...props }) {
     const ref = useRef();
     const { nodes, materials, animations } = useGLTF(
@@ -30,6 +29,12 @@ export default function Model({ ...props }) {
     );
     const { actions } = useAnimations(animations, ref);
     const randomColor = getRandomColor();
+
+    //changes cursor on hover
+    /* const [hovered, setHovered] = useState(false);
+    useEffect(() => void (document.body.style.cursor = hovered ? "pointer" : "auto"), [hovered]); */
+
+    //const mixer = new THREE.AnimationMixer(ref);
 
     // Upon click, changes color
     const [sheepColor, setSheepColor] = useState(randomColor);
@@ -42,16 +47,13 @@ export default function Model({ ...props }) {
     }); */
 
     // makes sheep walk forward
-    console.log(ref.current);
+    //useFrame((state, delta) => (ref.current.position.x += 0.01));
 
     //this triggers animations (console.log(actions) to see what animations you imported w/ model)
     useEffect(() => {
         actions.Walking.play();
     })
     
-    
-
-
     return (
         <group ref={ref} {...props} dispose={null}>
             <group name="Scene" >
@@ -61,18 +63,20 @@ export default function Model({ ...props }) {
                         name="Sheep"
                         geometry={nodes.Sheep.geometry}
                         /* material={materials.Material} */
-                        skeleton={nodes.Sheep.skeleton} >
+                        skeleton={nodes.Sheep.skeleton}>
                         <meshStandardMaterial color={sheepColor} />
                     </skinnedMesh>
                 </group>
                 <mesh 
                     geometry={nodes.Sheep.geometry}
-                    scale={1.5}
+                    scale={1.0}
                     onClick={() => setSheepColor(sheepColor => getRandomColor())}
-                >
+                    /* onPointerOver={() => setHovered(true)}
+                    onPointerOut={() => setHovered(false)} */ 
+                    >
                     <meshStandardMaterial
                     transparent={true}
-                    opacity={0.0} />
+                    opacity={1.0} />
                 </mesh>
             </group>
         </group>
