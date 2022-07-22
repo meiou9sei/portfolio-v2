@@ -10,7 +10,6 @@ const HomePage = () => {
                 <Hero />
                 <AboutMe />
             </main>
-
         </div>
     );
 }

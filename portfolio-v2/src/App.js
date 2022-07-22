@@ -3,6 +3,8 @@ import HomePage from './components/Pages/HomePage';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+import CanvasContainer from './components/ThreeComponents/CanvasContainer';
+
 
 function App() {
   return (
@@ -11,6 +13,9 @@ function App() {
         <Header />
         <div className="content">
           <HomePage />
+
+          <CanvasContainer />
+
           {/*
           <Switch>
             <Route exact path="/">
