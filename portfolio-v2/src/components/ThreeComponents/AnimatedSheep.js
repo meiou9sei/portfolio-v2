@@ -30,8 +30,8 @@ export default function Model({ ...props }) {
     // Upon click, changes color
     const [sheepColor, setSheepColor] = useState(randomColor);
 
-    //trigger sheep animation
-    console.log(actions)
+    //list available sheep animation
+    console.log(actions);
 
     //actions that work: 
     /* 
@@ -44,11 +44,25 @@ export default function Model({ ...props }) {
         -Spawning
     */
 
-    useEffect(() => {
+    //animation trigger and moving sheep
+    function sheepRandomAnimations() {
         actions.Walking.play();
+    }
+
+    function sheepRandomMovements() {
+        ref.current.position.x += 0.00;
+    }
+
+    //animation trigger
+    useEffect(() => {
+        sheepRandomAnimations()
     })
 
-    useFrame((state, delta) => (ref.current.position.x += 0.01));
+    //move sheep location, rotation
+    useFrame((state, delta) => (
+        sheepRandomMovements()
+    ));
+
     //make sheep move
 
 
