@@ -16,6 +16,30 @@ function getRandomColor() {
     return color;
 }
 
+function getRandomNum(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+//TAU = 1 full rotation
+const TAU = 6.28318;
+//timer variable set outside below export, since clicking for new color sets new state and would reset timer? or something
+let timer = 0;
+//timer count at which resets
+const timerMax = 1000;
+
+let newMovementPlease = true;
+
+function timerTicker() {
+    //adds to timer - if timer > 1000, randomly starts new animation
+    timer += 1;
+    newMovementPlease = false;
+    if (timer >= timerMax) {
+        timer = 0;
+        newMovementPlease = true;
+    }
+    //console.log(timer);
+}
+
 export default function Model({ ...props }) {
     const ref = useRef();
     const { nodes, materials, animations } = useGLTF(
@@ -49,8 +73,15 @@ export default function Model({ ...props }) {
         actions.Walking.play();
     }
 
+    //NOTE: 1 full ref.current.rotation.axis = 6.28318... (TAU)
     function sheepRandomMovements() {
-        ref.current.position.x += 0.00;
+        timerTicker();
+        if (newMovementPlease) {
+            //ref.current.rotation.y = getRandomNum(0, TAU);
+
+        }
+        //ref.current.rotation.y = 1;
+        ref.current.position.z -= 0.01;
     }
 
     //animation trigger
