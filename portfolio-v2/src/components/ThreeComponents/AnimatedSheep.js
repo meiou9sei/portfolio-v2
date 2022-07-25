@@ -21,13 +21,18 @@ function getRandomNum(min, max) {
 }
 
 //TAU = 1 full rotation
-const TAU = 6.28318;
+const TAU = Math.PI * 2;
 //timer variable set outside below export, since clicking for new color sets new state and would reset timer? or something
 let timer = 0;
 //timer count at which resets
-const timerMax = 1000;
+const timerMax = 500;
 
 let newMovementPlease = true;
+
+//sheep position and angles
+let newYangle = 0;
+let newXposition = 0;
+let newZposition = 0;
 
 function timerTicker() {
     //adds to timer - if timer > 1000, randomly starts new animation
@@ -77,11 +82,13 @@ export default function Model({ ...props }) {
     function sheepRandomMovements() {
         timerTicker();
         if (newMovementPlease) {
-            //ref.current.rotation.y = getRandomNum(0, TAU);
-
+            newYangle = getRandomNum(0, TAU);
+            ref.current.rotation.y = newYangle;
+            newXposition = Math.cos(newYangle);
+            newZposition = Math.sin(newYangle);
         }
-        //ref.current.rotation.y = 1;
-        ref.current.position.z -= 0.01;
+        ref.current.position.x += newXposition/100;
+        ref.current.position.z -= newZposition/100;
     }
 
     //animation trigger
