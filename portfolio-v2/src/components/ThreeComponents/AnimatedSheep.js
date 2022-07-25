@@ -31,7 +31,7 @@ const TAU = Math.PI * 2;
 //timer variable set outside below export, since clicking for new color sets new state and would reset timer? or something
 let timer = 0;
 //timer count at which resets
-const timerMax = 500;
+const timerMax = 100;
 
 //sheep animation global variables
 let newAnimationPlease = false;
@@ -48,13 +48,25 @@ function timerTicker() {
     //adds to timer - if timer > 1000, randomly starts new animation
     timer += 1;
     newAnimationPlease = false;
+    newMovementPlease = false;
     if (timer >= timerMax) {
         timer = 0;
         newAnimationPlease = true;
-        console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+        console.log(newAnimationPlease + "new animation requested")
+        
+        newMovementPlease = true;
     }
     console.log(timer);
 }
+
+//chances constants for animation change
+const LOWCHANCE = 0.5;
+const MIDCHANCE = 0.5;
+const HIGHCHANCE = 0.8;
+
+
+
+
 
 export default function Model({ ...props }) {
     const ref = useRef();
@@ -64,7 +76,7 @@ export default function Model({ ...props }) {
     const { actions } = useAnimations(animations, ref);
     const randomColor = getRandomColor();
 
-    {/* makes sheep rotate */}
+    /* makes sheep rotate */
     // useFrame((state, delta) => (ref.current.rotation.y += 0.01));
 
     // Upon click, changes color
@@ -84,47 +96,69 @@ export default function Model({ ...props }) {
         -Spawning - "SpawnAnimation"
     */
 
+    function resetAllSheepAnimations() {
+        actions.zzzaTPose.reset();
+        actions.Eating.reset();
+        actions.Walking.reset();
+        actions.HeadDown.reset();
+        actions.HeadUp.reset();
+    }
+    
     //animation trigger and moving sheep
-    function sheepRandomAnimations() {
-        console.log('imannoying');
-        if (newSpawn) {
-            whichAnimation = "SpawnAnimation";
-            newSpawn = false;
-            actions.Spawning.setLoop(THREE.LoopOnce).play();
-            timer = 0;
-        } else {
-            //selects new Animation every timerMax frames (which sets newAnimationPlease to true)
-            if (newAnimationPlease) {
-                console.log('entered');
-                //3 options: 
-                let nextMove = Math.random();
-                newMovementPlease = false;
-                //1) stand still
-                if (nextMove < 0.333) {
-                    whichAnimation = "TPose";
-                } else if (nextMove < 0.666) {
-                    whichAnimation = "Eating";
-                } else {
-                    newMovementPlease = true;
-                    whichAnimation = "Moving";
-                }
+    function sheepSpawn() {
+        //play spawning animation every time state refreshes
+        actions.Spawning.reset();
+        actions.Spawning.setLoop(THREE.LoopOnce).play();
+    }
 
+    function sheepRandomAnimations() {
+        //if eating, plays through that animation
+        if (whichAnimation === "EatingStart" && newAnimationPlease) {
+            whichAnimation = "EatingMid";
+            //for loop random animations forever - if doing an animation, continue it most of the time vvv
+        } else if ( (newAnimationPlease && Math.random() < LOWCHANCE) || whichAnimation === null || (whichAnimation === "TPose" && Math.random() < MIDCHANCE) || whichAnimation === "EatingEnd") {
+
+            let nextAnimation = Math.random();
+
+            if (whichAnimation === "EatingMid") {
+                if (nextAnimation < LOWCHANCE) {
+                    resetAllSheepAnimations();
+                    whichAnimation = "EatingEnd";
+                } 
+            } else if (nextAnimation < 0.333) { //3 options if need new animation 
+                //1) stand still
+                newMovementPlease = false;
+                whichAnimation = "TPose";
+            } else if (nextAnimation < 0.666) {
+                //2) start eating
+                newMovementPlease = false;
+                whichAnimation = "EatingStart";
+            } else {
+                //3) walk
+                newMovementPlease = true;
+                whichAnimation = "Walking";
             }
+
         }
+
         console.log(whichAnimation);
-        
+
         switch (whichAnimation) {
-            case "SpawnAnimation":
-                actions.Spawning.reset();
-                actions.Spawning.setLoop(THREE.LoopOnce).play();
-                break;
             case "TPose":
-                actions.zzzaTPose.reset();
-                actions.zzzaTPose.setLoop(THREE.LoopOnce).play();
+                actions.zzzaTPose.play();
                 break;
-            case "Eating": 
-                actions.Walking.reset();
-                actions.Walking.setLoop(THREE.LoopOnce, timerMax/30).play();
+            case "EatingStart": 
+                actions.HeadDown.play();
+                actions.HeadDown.clampWhenFinished(true);
+                break;
+            case "EatingMid": 
+                actions.Eating.play();
+                break;
+            case "EatingEnd":        
+                actions.HeadUp.play();
+                break;
+            case "Walking": 
+                actions.Walking.play();
                 break;
         }
     }
@@ -133,33 +167,33 @@ export default function Model({ ...props }) {
     function sheepRandomMovements() {
         timerTicker();
 
-        //newMovementPlease, whichAnimation are set in sheepRandomAnimations()
-        if (newMovementPlease) {
-            newYangle = getRandomNum(0, TAU);
-            ref.current.rotation.y = newYangle;
-            newXposition = Math.cos(newYangle);
-            newZposition = Math.sin(newYangle);
-            //above calculated w/ https://gamedev.stackexchange.com/questions/192379/move-2d-rotating-object-in-its-facing-direction
-        }
-
         if(whichAnimation === "Walking") {
+            //newMovementPlease, whichAnimation are set in sheepRandomAnimations()
+            if (newMovementPlease) {
+                newYangle = getRandomNum(0, TAU);
+                ref.current.rotation.y = newYangle;
+                newXposition = Math.cos(newYangle);
+                newZposition = Math.sin(newYangle);
+                //above calculated w/ https://gamedev.stackexchange.com/questions/192379/move-2d-rotating-object-in-its-facing-direction
+            }
+
+            //calculates direction to move towards and executes, so sheep walks towards where it's rotated
             ref.current.position.x += newXposition/100;
             ref.current.position.z -= newZposition/100;
         }
     }
 
-    //animation trigger
+    //spawn animation trigger
     useEffect(() => {
-        sheepRandomAnimations()
+        sheepSpawn();
     })
-
-    if (timer >= timerMax) {
-        sheepRandomAnimations();
-    }
 
     //move sheep location, rotation
     useFrame((state, delta) => (
         sheepRandomMovements()
+    ));
+    useFrame((state, delta) => (
+        sheepRandomAnimations()
     ));
 
     //spawns new sheep on click
