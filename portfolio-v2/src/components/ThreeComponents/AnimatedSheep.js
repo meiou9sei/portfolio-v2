@@ -27,7 +27,7 @@ let timer = 0;
 //timer count at which resets
 const timerMax = 500;
 
-let newMovementPlease = true;
+let newMovementPlease = false;
 
 //sheep position and angles
 let newYangle = 0;
@@ -42,7 +42,7 @@ function timerTicker() {
         timer = 0;
         newMovementPlease = true;
     }
-    //console.log(timer);
+    console.log(timer);
 }
 
 export default function Model({ ...props }) {
@@ -125,7 +125,7 @@ export default function Model({ ...props }) {
                 >
                     <meshStandardMaterial
                     transparent={true}
-                    opacity={0.75} />
+                    opacity={0.5} />
                 </mesh>
             </group>
         </group>
