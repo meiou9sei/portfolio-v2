@@ -27,7 +27,10 @@ let timer = 0;
 //timer count at which resets
 const timerMax = 500;
 
+//sheep animation global variables
 let newMovementPlease = false;
+let whichAnimation = null;
+let newSpawn = true;
 
 //sheep position and angles
 let newYangle = 0;
@@ -42,7 +45,7 @@ function timerTicker() {
         timer = 0;
         newMovementPlease = true;
     }
-    console.log(timer);
+    //console.log(timer);
 }
 
 export default function Model({ ...props }) {
@@ -70,12 +73,27 @@ export default function Model({ ...props }) {
         -Eating
         -HeadUp
         -Walking
-        -Spawning
+        -Spawning - "SpawnAnimation"
     */
 
     //animation trigger and moving sheep
     function sheepRandomAnimations() {
-        actions.Walking.play();
+        if (newSpawn) {
+            whichAnimation = "SpawnAnimation";
+            newSpawn = false;
+            actions.Spawning.setLoop(THREE.LoopOnce).play();
+        } else {
+            //other animation triggers
+        }
+        console.log(whichAnimation);
+        
+        switch (whichAnimation) {
+            case "SpawnAnimation":
+                actions.Spawning.reset();
+                actions.Spawning.setLoop(THREE.LoopOnce).play();
+                break;
+            
+        }
     }
 
     //NOTE: 1 full ref.current.rotation.axis = 6.28318... (TAU)
@@ -86,6 +104,7 @@ export default function Model({ ...props }) {
             ref.current.rotation.y = newYangle;
             newXposition = Math.cos(newYangle);
             newZposition = Math.sin(newYangle);
+            //above calculated w/ https://gamedev.stackexchange.com/questions/192379/move-2d-rotating-object-in-its-facing-direction
         }
         ref.current.position.x += newXposition/100;
         ref.current.position.z -= newZposition/100;
@@ -101,7 +120,12 @@ export default function Model({ ...props }) {
         sheepRandomMovements()
     ));
 
-    //make sheep move
+    //spawns new sheep on click
+    function changeClickedSheep() {
+        newSpawn = true;
+        console.log(newSpawn);
+        setSheepColor(sheepColor => getRandomColor());
+    } 
 
 
  
@@ -119,10 +143,11 @@ export default function Model({ ...props }) {
                     </skinnedMesh>
                 </group>
                 <mesh 
-                    geometry={nodes.Sheep.geometry}
                     scale={1.25}
-                    onClick={() => setSheepColor(sheepColor => getRandomColor())}
+                    onClick={() => changeClickedSheep()}
+                    position={[0, 0.6, 0]}
                 >
+                    <boxGeometry args={[1, 1, 1,]} />
                     <meshStandardMaterial
                     transparent={true}
                     opacity={0.5} />
