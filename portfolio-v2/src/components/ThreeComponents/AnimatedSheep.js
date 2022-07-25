@@ -52,20 +52,16 @@ function timerTicker() {
     if (timer >= timerMax) {
         timer = 0;
         newAnimationPlease = true;
-        console.log(newAnimationPlease + "new animation requested")
+        //console.log(newAnimationPlease + "new animation requested")
         
         newMovementPlease = true;
     }
-    //console.log(timer);
 }
 
 //chances constants for animation change
 const LOWCHANCE = 0.5;
 const MIDCHANCE = 0.5;
 const HIGHCHANCE = 0.8;
-
-
-
 
 
 export default function Model({ ...props }) {
@@ -76,25 +72,8 @@ export default function Model({ ...props }) {
     const { actions } = useAnimations(animations, ref);
     const randomColor = getRandomColor();
 
-    /* makes sheep rotate */
-    // useFrame((state, delta) => (ref.current.rotation.y += 0.01));
-
     // Upon click, changes color
     const [sheepColor, setSheepColor] = useState(randomColor);
-
-    //list available sheep animation
-    //console.log(actions);
-
-    //actions that work: 
-    /* 
-        NEWSheepModelwAnimations3.gltf
-        -zzzaTPose
-        -HeadDown
-        -Eating
-        -HeadUp
-        -Walking
-        -Spawning - "SpawnAnimation"
-    */
 
     function resetAllSheepAnimations() {
         actions.zzzaTPose.reset();
@@ -145,7 +124,7 @@ export default function Model({ ...props }) {
 
         }
 
-        console.log(whichAnimation);
+        //console.log(whichAnimation);
 
         switch (whichAnimation) {
             case "TPose":
@@ -212,7 +191,7 @@ export default function Model({ ...props }) {
 
  
     return (
-        <group ref={ref} {...props} dispose={null}>
+        <group ref={ref} {...props} dispose={null} onClick={() => changeClickedSheep()}>
             <group name="Scene" >
                 <group name="Armature" scale={1}>
                     <primitive object={nodes.Bone} />
@@ -226,7 +205,6 @@ export default function Model({ ...props }) {
                 </group>
                 <mesh 
                     scale={1.25}
-                    onClick={() => changeClickedSheep()}
                     position={[0, 0.6, 0]}
                 >
                     <boxGeometry args={[1, 1, 1,]} />
@@ -241,3 +219,34 @@ export default function Model({ ...props }) {
 
 
 useGLTF.preload("/sheepModelwAnimations.gltf");
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+    //list available sheep animation
+    //console.log(actions);
+
+    //actions that work: 
+    /* 
+        NEWSheepModelwAnimations3.gltf
+        -zzzaTPose
+        -HeadDown
+        -Eating
+        -HeadUp
+        -Walking
+        -Spawning - "SpawnAnimation"
+    */
+
+
+        
+    /* makes sheep rotate */
+    // useFrame((state, delta) => (ref.current.rotation.y += 0.01));
