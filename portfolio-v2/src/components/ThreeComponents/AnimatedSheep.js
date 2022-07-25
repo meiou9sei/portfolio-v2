@@ -20,6 +20,12 @@ function getRandomNum(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+  }  
+
 //TAU = 1 full rotation
 const TAU = Math.PI * 2;
 //timer variable set outside below export, since clicking for new color sets new state and would reset timer? or something
@@ -28,6 +34,7 @@ let timer = 0;
 const timerMax = 500;
 
 //sheep animation global variables
+let newAnimationPlease = false;
 let newMovementPlease = false;
 let whichAnimation = null;
 let newSpawn = true;
@@ -40,12 +47,13 @@ let newZposition = 0;
 function timerTicker() {
     //adds to timer - if timer > 1000, randomly starts new animation
     timer += 1;
-    newMovementPlease = false;
+    newAnimationPlease = false;
     if (timer >= timerMax) {
         timer = 0;
-        newMovementPlease = true;
+        newAnimationPlease = true;
+        console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
     }
-    //console.log(timer);
+    console.log(timer);
 }
 
 export default function Model({ ...props }) {
@@ -63,7 +71,7 @@ export default function Model({ ...props }) {
     const [sheepColor, setSheepColor] = useState(randomColor);
 
     //list available sheep animation
-    console.log(actions);
+    //console.log(actions);
 
     //actions that work: 
     /* 
@@ -78,12 +86,30 @@ export default function Model({ ...props }) {
 
     //animation trigger and moving sheep
     function sheepRandomAnimations() {
+        console.log('imannoying');
         if (newSpawn) {
             whichAnimation = "SpawnAnimation";
             newSpawn = false;
             actions.Spawning.setLoop(THREE.LoopOnce).play();
+            timer = 0;
         } else {
-            //other animation triggers
+            //selects new Animation every timerMax frames (which sets newAnimationPlease to true)
+            if (newAnimationPlease) {
+                console.log('entered');
+                //3 options: 
+                let nextMove = Math.random();
+                newMovementPlease = false;
+                //1) stand still
+                if (nextMove < 0.333) {
+                    whichAnimation = "TPose";
+                } else if (nextMove < 0.666) {
+                    whichAnimation = "Eating";
+                } else {
+                    newMovementPlease = true;
+                    whichAnimation = "Moving";
+                }
+
+            }
         }
         console.log(whichAnimation);
         
@@ -92,13 +118,22 @@ export default function Model({ ...props }) {
                 actions.Spawning.reset();
                 actions.Spawning.setLoop(THREE.LoopOnce).play();
                 break;
-            
+            case "TPose":
+                actions.zzzaTPose.reset();
+                actions.zzzaTPose.setLoop(THREE.LoopOnce).play();
+                break;
+            case "Eating": 
+                actions.Walking.reset();
+                actions.Walking.setLoop(THREE.LoopOnce, timerMax/30).play();
+                break;
         }
     }
 
     //NOTE: 1 full ref.current.rotation.axis = 6.28318... (TAU)
     function sheepRandomMovements() {
         timerTicker();
+
+        //newMovementPlease, whichAnimation are set in sheepRandomAnimations()
         if (newMovementPlease) {
             newYangle = getRandomNum(0, TAU);
             ref.current.rotation.y = newYangle;
@@ -106,14 +141,21 @@ export default function Model({ ...props }) {
             newZposition = Math.sin(newYangle);
             //above calculated w/ https://gamedev.stackexchange.com/questions/192379/move-2d-rotating-object-in-its-facing-direction
         }
-        ref.current.position.x += newXposition/100;
-        ref.current.position.z -= newZposition/100;
+
+        if(whichAnimation === "Walking") {
+            ref.current.position.x += newXposition/100;
+            ref.current.position.z -= newZposition/100;
+        }
     }
 
     //animation trigger
     useEffect(() => {
         sheepRandomAnimations()
     })
+
+    if (timer >= timerMax) {
+        sheepRandomAnimations();
+    }
 
     //move sheep location, rotation
     useFrame((state, delta) => (
@@ -123,7 +165,6 @@ export default function Model({ ...props }) {
     //spawns new sheep on click
     function changeClickedSheep() {
         newSpawn = true;
-        console.log(newSpawn);
         setSheepColor(sheepColor => getRandomColor());
     } 
 
