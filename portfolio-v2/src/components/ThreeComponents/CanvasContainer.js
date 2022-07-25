@@ -78,7 +78,9 @@ function getRandomNum(min, max) {
 // for (let i = 0; i < getRandomInt(1, 10); i++) {
 //     console.log(i);
 //     console.log(3 + i, 3 + i);
-//     SheepGroup.push(<AnimatedSheep key={i} position={ [getRandomNum(-3, 3), 0, getRandomNum(-3, 3)] }
+    
+//    SheepGroup.push(<AnimatedSheep key={i} position={ [getRandomNum(-3, 3), 0, getRandomNum(-3, 3)] }
+
 //     />)
 // }
 
@@ -88,7 +90,7 @@ const CanvasContainer = () => {
     return ( 
         <div id="canvas-container" style={{ height: '500px' }}>
             <Canvas>
-                <CameraController />
+                {/* <CameraController />*/}
 
                 {/* lights */}
                 <ambientLight intensity={0.1} />
@@ -102,7 +104,10 @@ const CanvasContainer = () => {
                 {/* SheepGroup */} 
 
                 {/* Spawn one sheep */}
-                <AnimatedSheep />
+                <AnimatedSheep position={[-3, 0, 0]}/>
+                <AnimatedSheep position={[3, 0, 0]}/>
+
+
 
             </Canvas>
         </div>

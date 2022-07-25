@@ -56,7 +56,7 @@ function timerTicker() {
         
         newMovementPlease = true;
     }
-    console.log(timer);
+    //console.log(timer);
 }
 
 //chances constants for animation change
@@ -109,6 +109,10 @@ export default function Model({ ...props }) {
         //play spawning animation every time state refreshes
         actions.Spawning.reset();
         actions.Spawning.setLoop(THREE.LoopOnce).play();
+    }
+
+    function sheepEatAnimation() {
+        actions.Eating.play();
     }
 
     function sheepRandomAnimations() {
@@ -193,7 +197,10 @@ export default function Model({ ...props }) {
         sheepRandomMovements()
     ));
     useFrame((state, delta) => (
-        sheepRandomAnimations()
+        //random animations
+        //sheepRandomAnimations()
+
+        sheepEatAnimation()
     ));
 
     //spawns new sheep on click

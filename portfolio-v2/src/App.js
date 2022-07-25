@@ -8,34 +8,37 @@ import CanvasContainer from './components/ThreeComponents/CanvasContainer';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <div className="content">
-          <HomePage />
 
-          <CanvasContainer />
 
-          {/*
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/s/blog">
-              <Blog />
-            </Route>
-            <Route path="/s/resume">
-              <Resume />
-            </Route>
-            <Route path="/s/contact">
-              <Contact />
-            </Route>
-          </Switch>
-          */}
-        </div>
-        <Footer />
-      </div>
-    </Router>
+    <CanvasContainer />
+
+
+// {/* <Router>
+//       <div className="App">
+//         <Header />
+//         <div className="content">
+//           <HomePage />
+
+//           {/*
+//           <Switch>
+//             <Route exact path="/">
+//               <Home />
+//             </Route>
+//             <Route path="/s/blog">
+//               <Blog />
+//             </Route>
+//             <Route path="/s/resume">
+//               <Resume />
+//             </Route>
+//             <Route path="/s/contact">
+//               <Contact />
+//             </Route>
+//           </Switch>
+//           */}
+//         </div>
+//         <Footer />
+//       </div>
+//     </Router> */}
   );
 }
 
