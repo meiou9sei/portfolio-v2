@@ -1,7 +1,8 @@
-import AboutMe from "../HomeComponents/AboutMe";
-import Hero from "../HomeComponents/Hero";
+import AboutMe from "./AboutMe";
+import Hero from "./Hero";
 
-
+//css
+import '../../../css/home.css'
 
 const HomePage = () => {
     return ( 

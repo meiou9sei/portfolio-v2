@@ -1,0 +1,25 @@
+/**************/
+/* CONTAINERS */
+/**************/
+
+h1 {
+    margin-bottom: 24px;
+}
+
+h2,
+p,
+li {
+    margin-bottom: 8px;
+}
+
+header li {
+    margin-bottom: 0px;
+}
+
+/*********/
+/* FONTS */
+/*********/
+
+h1 {
+    font-size: 3rem;
+}

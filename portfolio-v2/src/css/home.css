@@ -1,0 +1,80 @@
+/**************/
+/* CONTAINERS */
+/**************/
+
+.hero-container {
+	height: 80vh;
+	background-color: var(--bg);
+	display: flex;
+}
+
+.hero {
+	margin: auto;
+	top: -5vh;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	gap: 12px;
+}
+
+.heros-empty-space {
+	height: 10vh;
+	background-color: var(--bg);
+	display: flex;
+	align-items: center;
+}
+
+#about-nav-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center; /* I really want this but might not be best */
+	gap: 4px;
+}
+
+.non-title-main {
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+}
+
+.non-title-main li {
+	list-style: square inside;
+}
+
+.about-me-mini {
+	display: flex;
+	flex-direction: column;
+}
+
+.about-me-mini li {
+	margin-bottom: 8px;
+}
+
+h2 {
+	margin-bottom: 16px;
+}
+
+.title-description-container {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;	
+	margin: 16px 0;
+}
+
+/*********/
+/* FONTS */
+/*********/
+
+.hero h1 {
+	font-size: max(7vw, 48px);
+	color: var(--color);
+}
+
+.hero-subtext {
+	font-size: max(2vw, 16px);
+	color: var(--colorShade);
+}
+
+.heros-empty-space {
+	color: var(--color2)
+}
