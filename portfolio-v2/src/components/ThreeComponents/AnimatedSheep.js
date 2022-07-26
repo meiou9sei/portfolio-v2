@@ -207,7 +207,7 @@ export default function Model({ ...props }) {
                     scale={1.25}
                     position={[0, 0.6, 0]}
                 >
-                    <boxGeometry args={[1, 1, 1,]} />
+                    <boxGeometry args={[1, 1, 1]} />
                     <meshStandardMaterial
                     transparent={true}
                     opacity={0.5} />

@@ -90,7 +90,7 @@ const CanvasContainer = () => {
     return ( 
         <div id="canvas-container" style={{ height: '500px' }}>
             <Canvas>
-                {/* <CameraController />*/}
+                <CameraController />
 
                 {/* lights */}
                 <ambientLight intensity={0.1} />
@@ -104,8 +104,19 @@ const CanvasContainer = () => {
                 {/* SheepGroup */} 
 
                 {/* Spawn one sheep */}
-                <AnimatedSheep position={[-3, 0, 0]}/>
-                <AnimatedSheep position={[3, 0, 0]}/>
+                {/* <AnimatedSheep position={[-3, 0, 0]}/> */}
+
+                <mesh>
+                    <boxGeometry args={[1, 1, 1]} position={[-5, 0, 0]} />
+                    <meshStandardMaterial color={"red"}/>
+                </mesh>
+                <mesh>
+                    <boxGeometry args={[1, 1, 1]} position={[5, 0, 0]} />
+                    <meshStandardMaterial color={"green"}/>
+                </mesh>
+
+                <Box position={[-3, 0, 0]} />
+                <Box position={[3, 0, 0]} />
 
 
 
