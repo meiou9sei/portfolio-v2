@@ -1,0 +1,10 @@
+article {
+    margin-bottom: 64px;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-post-text-content {
+    width: 90%;
+    align-self: center;
+}

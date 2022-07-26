@@ -1,15 +1,19 @@
 //this page does not use react components as it will be removed later
 
+//css
+import '../../../css/subpage.css';
+import '../../../css/blog.css';
+
 const BlogPage = () => {
     return (
-        <main class="subpage-main">
+        <main className="subpage-main">
             <h1>blog</h1>
             
-            <div class="blog-post">
+            <div className="blog-post">
                 <article>
                     <h2>Climbing</h2>
                     <p>2022-07-09</p>
-                    <p class="blog-post-text-content">
+                    <p className="blog-post-text-content">
                         <br/>&emsp;I've been going climbing a while. Specifically bouldering, the last few months. My brother's been bugging me for a lot longer but I hadn't given it a try till this summer. 
                         <br/><br/>&emsp;It's a nice feeling. Every route is a mix of brain and brawn. Holds are placed in puzzling spots you must creatively solve and needed is an endurance to execute your plan. It's not enough to just be strong or smart. And that's refreshing.
                         <br/><br/>&emsp;I've tried weight-lifting for years to no avail, never staying consistent enough to see big results. It's always been boring, the actions routine and static. There's nothing new when it comes to lifting, your lifts are pre-planned and movements executed the same way every time. Contrast that with the dynamic ways climbing challenges you. I look forward to climbing twice a week. 
@@ -23,11 +27,11 @@ const BlogPage = () => {
                 </article>
             </div>
 
-            <div class="blog-post">
+            <div className="blog-post">
                 <article>
                     <h2>A Juggler's Life</h2>
                     <p>2022-07-10</p>
-                    <p class="blog-post-text-content">
+                    <p className="blog-post-text-content">
                         <br/>&emsp;It's been quite hectic these days.
                         <br/><br/>&emsp;Lots of learning all around.
                         <br/><br/>&emsp;The last few years in fact. A lot of my hobbies revolve around studying in one way or another. Throughout highschool and college I've loved tinkering away and learning languages, animation, and history. Lots of reading too. The last year of college I picked up programming. 
