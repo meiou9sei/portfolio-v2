@@ -1,6 +1,6 @@
 const ContactPage = () => {
     return (
-        <main className="subpage-main">
+        <main className="subpage-main contactpage">
             <h1>contact me</h1>
         
             <ul>

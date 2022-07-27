@@ -7,8 +7,10 @@ import ContactPage from './components/Pages/ContactComponents/ContactPage';
 import Header from './components/Pages/Header';
 import Footer from "./components/Pages/Footer";
 
+import CanvasContainerBottomSheep from "./components/ThreeComponents/CanvasContainer";
+
 //css
-import './css/styles.css';
+import './css/styles.scss';
 
 function App() {
   return (
@@ -33,6 +35,9 @@ function App() {
             </Route>
           </Switch>
         </div>
+
+        <CanvasContainerBottomSheep />
+
         <Footer />
       </div>
     </Router>

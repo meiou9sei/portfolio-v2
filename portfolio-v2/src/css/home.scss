@@ -66,12 +66,12 @@ h2 {
 /*********/
 
 .hero h1 {
-	font-size: max(7vw, 48px);
+	font-size: calc(max(7vw, 48px));
 	color: var(--color);
 }
 
 .hero-subtext {
-	font-size: max(2vw, 16px);
+	font-size: calc(max(2vw, 16px));
 	color: var(--colorShade);
 }
 

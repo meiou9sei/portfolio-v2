@@ -180,3 +180,73 @@ footer a:hover {
 		padding: 24px;
 	}
 }
+
+
+/************************/
+/* SUBPAGE SPECIFIC CSS */
+/************************/
+
+/* CONTAINERS */
+
+.subpage-main h1 {
+    margin-bottom: 24px;
+}
+
+.subpage-main p,
+.subpage-main h2,
+.subpage-main li
+{
+    margin-bottom: 8px;
+}
+
+.subpage-main header li {
+    margin-bottom: 0px;
+}
+
+/* FONTS */
+
+.subpage-main h1 {
+    font-size: 3rem;
+}
+
+/*************************/
+/* BLOGPAGE SPECIFIC CSS */
+/*************************/
+
+.blogpage article {
+    margin-bottom: 64px;
+    display: flex;
+    flex-direction: column;
+}
+
+.blogpage p.blog-post-text-content {
+    width: 90%;
+    align-self: center;
+}
+
+/***********************/
+/* RESUME SPECIFIC CSS */
+/***********************/
+
+/* CONTAINERS */
+
+.resumepage .resume {
+    height: 930px;
+}
+
+.resumepage .resume p {
+    margin-bottom: 16px;
+}
+
+.resumepage embed {
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 900px) {
+    .resumepage .resume {
+        height: 100vh;
+        max-height: 80vh;
+        margin-bottom: 96px;
+    }
+}
