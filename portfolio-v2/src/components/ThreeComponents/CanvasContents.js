@@ -9,6 +9,7 @@ import { useFrame } from '@react-three/fiber'
 
 //sheep
 import AnimatedSheep from "./AnimatedSheep";
+import RevivedAnimatedSheep from "./RevivedAnimatedSheep";
 import Box2 from "./Box2";
 
 
@@ -30,12 +31,17 @@ const CanvasContents = () => {
 
             <Stars ref={ref} radius={50} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
 
+
+            {/* DOESN'T WORK */}
             {/* <AnimatedSheep />
             <AnimatedSheep /> */}
 
-            <Box2 position={[-3, 0, 0]} />
-            <Box2 position={[3, 0, 0]} />
+            {/* WORKS */}
+            {/* <Box2 position={[-3, 0, 0]} />
+            <Box2 position={[3, 0, 0]} /> */}
             
+            <AnimatedSheep position={[3, 0, 0]} />
+            <RevivedAnimatedSheep position={[-3, 0, 0]} />
 
 
         </>
