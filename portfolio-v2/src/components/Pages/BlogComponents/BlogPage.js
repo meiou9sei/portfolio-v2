@@ -1,8 +1,8 @@
 //this page does not use react components as it will be removed later
 
 //css
-import '../../../css/subpage.css';
-import '../../../css/blog.css';
+import '../../../css/subpage.scss';
+import '../../../css/blog.scss';
 
 const BlogPage = () => {
     return (

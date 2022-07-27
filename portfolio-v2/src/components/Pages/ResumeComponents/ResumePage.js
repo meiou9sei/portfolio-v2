@@ -1,6 +1,6 @@
 //css
-import '../../../css/subpage.css';
-import '../../../css/resume.css';
+import '../../../css/subpage.scss';
+import '../../../css/resume.scss';
 
 const ResumePage = () => {
     return (

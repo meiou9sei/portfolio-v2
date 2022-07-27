@@ -1,3 +1,6 @@
+//css
+import '../../../css/subpage.scss';
+
 const ContactPage = () => {
     return (
         <main className="subpage-main">

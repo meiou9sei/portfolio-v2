@@ -8,7 +8,7 @@ import Header from './components/Pages/Header';
 import Footer from "./components/Pages/Footer";
 
 //css
-import './css/styles.css';
+import './css/styles.scss';
 
 function App() {
   return (
