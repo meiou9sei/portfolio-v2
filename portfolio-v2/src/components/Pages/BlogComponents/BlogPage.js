@@ -1,12 +1,8 @@
 //this page does not use react components as it will be removed later
 
-//css
-import '../../../css/subpage.scss';
-import '../../../css/blog.scss';
-
 const BlogPage = () => {
     return (
-        <main className="subpage-main">
+        <main className="subpage-main blogpage">
             <h1>blog</h1>
             
             <div className="blog-post">

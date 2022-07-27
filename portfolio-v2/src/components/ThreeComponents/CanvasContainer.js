@@ -86,7 +86,7 @@ function getRandomNum(min, max) {
 
 //nvm neither worked 😔
 
-const CanvasContainer = () => {
+const CanvasContainerBottomSheep = () => {
     return ( 
         <div id="canvas-container" style={{ height: '500px' }}>
             <Canvas>
@@ -125,6 +125,6 @@ const CanvasContainer = () => {
     );
 }
  
-export default CanvasContainer;
+export default CanvasContainerBottomSheep;
 
 
