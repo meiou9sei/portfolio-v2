@@ -7,6 +7,11 @@ import { Stars } from "@react-three/drei";
 import { useState, useRef } from 'react';
 import { useFrame } from '@react-three/fiber'
 
+//sheep
+import AnimatedSheep from "./AnimatedSheep";
+import Box2 from "./Box2";
+
+
 const CanvasContents = () => {
     const ref = useRef()
     useFrame((state, delta) => {
@@ -17,7 +22,7 @@ const CanvasContents = () => {
     return (
         <>
 
-            {/* <CameraController /> */}
+            <CameraController />
 
             {/* lights */}
             <ambientLight intensity={0.1} />
@@ -25,18 +30,12 @@ const CanvasContents = () => {
 
             <Stars ref={ref} radius={50} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
 
+            {/* <AnimatedSheep />
+            <AnimatedSheep /> */}
 
-            <mesh>
-                    <boxGeometry args={[1, 1, 1]} position={[-5, 0, 0]} />
-                    <meshStandardMaterial color={"red"}/>
-                </mesh>
-                <mesh>
-                    <boxGeometry args={[1, 1, 1]} position={[5, 0, 0]} />
-                    <meshStandardMaterial color={"green"}/>
-                </mesh>
-
-                <Box position={[-3, 0, 0]} />
-                <Box position={[3, 0, 0]} />
+            <Box2 position={[-3, 0, 0]} />
+            <Box2 position={[3, 0, 0]} />
+            
 
 
         </>

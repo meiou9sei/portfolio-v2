@@ -1,5 +1,6 @@
 //imports general
 import { Canvas } from "@react-three/fiber";
+import Box from "./Box";
 import Box2 from "./Box2";
 import Sheep from "./Sheep";
 import AnimatedSheep from "./AnimatedSheep";
@@ -94,7 +95,8 @@ const CanvasGeneral = () => {
 
 
     return ( 
-        <div id="canvas-container" style={{ height: '100vh', position: 'absolute', top: 0, width: '100%', pointerEvents: 'none' }}>
+        <div id="canvas-container" style={{ height: '100vh', position: 'absolute', top: 0, width: '100%'}}>
+            {/* , pointerEvents: 'none' */}
             <Canvas>
 
                 <CanvasContents />
@@ -107,7 +109,11 @@ const CanvasGeneral = () => {
                 {/* SheepGroup */} 
 
                 {/* Spawn one sheep */}
-                {/* <AnimatedSheep position={[-3, 0, 0]}/> */}
+                {/* <AnimatedSheep position={[3, 0, 0]}/>
+                <AnimatedSheep position={[-3, 0, 0]}/>
+
+                <Box position={[3, 0, 0]}/> */}
+                {/* <Box2 position={[-5, 0, 0]}/> */}
 
 
 

@@ -64,7 +64,7 @@ const MIDCHANCE = 0.5;
 const HIGHCHANCE = 0.8;
 
 
-export default function Model({ ...props }) {
+export default function Model(props) {
     const ref = useRef();
     const { nodes, materials, animations } = useGLTF(
         "/NEWSheepModelwAnimations3.gltf"
@@ -150,7 +150,7 @@ export default function Model({ ...props }) {
     function sheepRandomMovements() {
         timerTicker();
 
-        if(whichAnimation === "Walking") {
+        if(false /* CHANGE ME */ ) {
             //newMovementPlease, whichAnimation are set in sheepRandomAnimations()
             if (newMovementPlease) {
                 newYangle = getRandomNum(0, TAU);
@@ -203,6 +203,11 @@ export default function Model({ ...props }) {
                         <meshStandardMaterial color={sheepColor} />
                     </skinnedMesh>
                 </group>
+
+
+
+
+                {/* box */}
                 <mesh 
                     scale={1.25}
                     position={[0, 0.6, 0]}

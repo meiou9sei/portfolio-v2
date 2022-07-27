@@ -8,6 +8,8 @@ import Header from './components/Pages/Header';
 import Footer from "./components/Pages/Footer";
 
 import CanvasGeneral from "./components/ThreeComponents/CanvasContainer";
+import GrassCanvasContainer from './components/ThreeComponents/THEGRASS/GrassCanvasContainer';
+
 
 //css
 import './css/styles.scss';
@@ -37,7 +39,7 @@ function App() {
         </div>
 
         <CanvasGeneral />
-
+        {/* <GrassCanvasContainer /> */}
 
         <Footer />
       </div>
