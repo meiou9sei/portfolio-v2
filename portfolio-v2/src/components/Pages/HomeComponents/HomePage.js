@@ -10,6 +10,7 @@ const HomePage = () => {
             <main>
                 <Hero />
                 <AboutMe />
+                {/* <StarCanvasContainer /> */}
             </main>
         </div>
     );

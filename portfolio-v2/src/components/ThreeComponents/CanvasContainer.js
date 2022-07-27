@@ -4,6 +4,9 @@ import Box2 from "./Box2";
 import Sheep from "./Sheep";
 import AnimatedSheep from "./AnimatedSheep";
 import CameraController from "./CameraController";
+import CanvasContents from "./CanvasContents";
+
+
 
 //the horde of sheep
 // import AnimatedSheep1 from "./AnimatedSheepFarm/AnimatedSheep1";
@@ -87,9 +90,14 @@ function getRandomNum(min, max) {
 //nvm neither worked 😔
 
 const CanvasContainerBottomSheep = () => {
+
+
     return ( 
-        <div id="canvas-container" style={{ height: '500px' }}>
+        <div id="canvas-container" style={{ height: '100vh', position: 'absolute', top: 0, width: '100vw' }}>
             <Canvas>
+
+                {/* <Stars ref={ref} radius={50} depth={50} count={5000} factor={4} saturation={0} fade speed={1} /> */}
+                <CanvasContents />
                 <CameraController />
 
                 {/* lights */}
