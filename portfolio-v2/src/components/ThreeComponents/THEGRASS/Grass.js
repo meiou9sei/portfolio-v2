@@ -1,11 +1,9 @@
-/* disabled while working on sheep
-
 // Based on https://codepen.io/al-ro/pen/jJJygQ by al-ro, but rewritten in react-three-fiber
 import * as THREE from "three"
 import React, { useRef, useMemo } from "react"
 //import SimplexNoise from "simplex-noise"
 import { useFrame, useLoader } from "@react-three/fiber"
-import { Geometry } from "three/examples/jsm/deprecated/Geometry"
+//import { Geometry } from "three/examples/jsm/deprecated/Geometry"
 //These have been taken from "Realistic real-time grass rendering" by Eddie Lee, 2010
 import bladeDiffuse from "./resources/blade_diffuse.jpg"
 import bladeAlpha from "./resources/blade_alpha.jpg"
@@ -19,21 +17,21 @@ export default function Grass({ options = { bW: 0.12, bH: 1, joints: 5 }, width 
   const [texture, alphaMap] = useLoader(THREE.TextureLoader, [bladeDiffuse, bladeAlpha])
   const attributeData = useMemo(() => getAttributeData(instances, width), [instances, width])
   const baseGeom = useMemo(() => new THREE.PlaneBufferGeometry(bW, bH, 1, joints).translate(0, bH / 2, 0), [options])
-  const groundGeo = useMemo(() => {
-    const geo = new Geometry().fromBufferGeometry(new THREE.PlaneGeometry(width, width, 32, 32))
-    geo.verticesNeedUpdate = true
-    geo.lookAt(new THREE.Vector3(0, 1, 0))
-    for (let i = 0; i < geo.vertices.length; i++) {
-      const v = geo.vertices[i]
-      v.y = getYPosition(v.x, v.z)
-    }
-    geo.computeVertexNormals()
-    return geo.toBufferGeometry()
-  }, [width])
+  // const groundGeo = useMemo(() => {
+  //   const geo = new Geometry().fromBufferGeometry(new THREE.PlaneGeometry(width, width, 32, 32))
+  //   geo.verticesNeedUpdate = true
+  //   geo.lookAt(new THREE.Vector3(0, 1, 0))
+  //   for (let i = 0; i < geo.vertices.length; i++) {
+  //     const v = geo.vertices[i]
+  //     v.y = getYPosition(v.x, v.z)
+  //   }
+  //   geo.computeVertexNormals()
+  //   return geo.toBufferGeometry()
+  // }, [width])
   useFrame((state) => (materialRef.current.uniforms.time.value = state.clock.elapsedTime / 4))
   return (
     <group {...props}>
-      <mesh>
+      <mesh position={[0, -6, 0]} >
         <instancedBufferGeometry index={baseGeom.index} attributes-position={baseGeom.attributes.position} attributes-uv={baseGeom.attributes.uv}>
           <instancedBufferAttribute attach="attributes-offset" args={[new Float32Array(attributeData.offsets), 3]} />
           <instancedBufferAttribute attach="attributes-orientation" args={[new Float32Array(attributeData.orientations), 4]} />
@@ -43,8 +41,9 @@ export default function Grass({ options = { bW: 0.12, bH: 1, joints: 5 }, width 
         </instancedBufferGeometry>
         <grassMaterial ref={materialRef} map={texture} alphaMap={alphaMap} toneMapped={false} />
       </mesh>
-      <mesh position={[0, 0, 0]} geometry={groundGeo}>
-        <meshStandardMaterial color="#000f00" />
+      <mesh position={[0, -1, 0]} rotation-x={Math.PI * -0.5} /* geometry={groundGeo} */ >
+        <planeBufferGeometry attach="geometry" args={[25, 15]} />
+        <meshStandardMaterial color="yellow" />
       </mesh>
     </group>
   )
@@ -144,5 +143,3 @@ function getYPosition(x, z) {
 //   y += 0.2 * simplex.noise2D(x / 10, z / 10)
     return y
 }
-
-*/
