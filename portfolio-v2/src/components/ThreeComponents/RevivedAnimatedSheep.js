@@ -23,6 +23,9 @@ export default function Model(props) {
   // useGraph creates two flat object collections for nodes and materials
   const { nodes } = useGraph(clone)
 
+  //receive sheep color
+  const sheepColor = props.color;
+  console.log(props);
 
 
   return (
@@ -34,9 +37,11 @@ export default function Model(props) {
             <skinnedMesh 
               name="Sheep"
               geometry={nodes.Sheep.geometry}
-              material={materials["Material.001"]}
+              // material={materials["Material.001"]}
               skeleton={nodes.Sheep.skeleton}
-            />
+            >
+              <meshStandardMaterial color={sheepColor} />
+            </skinnedMesh>
           </group>
         </group>
       </group>
