@@ -43,8 +43,8 @@ const CanvasContents = () => {
             {/* <AnimatedSheep position={[3, 0, 0]} /> */}
 
 
-            <RevivedAnimatedSheep position={[-3, 0, 0]} color="#ff0000" />
-            <RevivedAnimatedSheep position={[3, 0, 0]} color="#ff00c1" />
+            {/* <RevivedAnimatedSheep position={[-3, 0, 0]} color="#ff0000" />
+            <RevivedAnimatedSheep position={[3, 0, 0]} color="#ff00c1" /> */}
 
 
         </>
