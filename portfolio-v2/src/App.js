@@ -39,7 +39,7 @@ function App() {
         </div>
 
         <CanvasGeneral />
-        {/* <GrassCanvasContainer /> */}
+        <GrassCanvasContainer />
 
         <Footer />
       </div>
