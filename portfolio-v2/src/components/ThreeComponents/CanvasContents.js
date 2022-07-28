@@ -40,8 +40,9 @@ const CanvasContents = () => {
             {/* <Box2 position={[-3, 0, 0]} />
             <Box2 position={[3, 0, 0]} /> */}
             
-            <AnimatedSheep position={[3, 0, 0]} />
+            {/* <AnimatedSheep position={[3, 0, 0]} /> */}
             <RevivedAnimatedSheep position={[-3, 0, 0]} />
+            <RevivedAnimatedSheep position={[3, 0, 0]} />
 
 
         </>
