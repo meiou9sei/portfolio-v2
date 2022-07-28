@@ -1,7 +1,9 @@
+/* disabled while working on sheep
+
 // Based on https://codepen.io/al-ro/pen/jJJygQ by al-ro, but rewritten in react-three-fiber
 import * as THREE from "three"
 import React, { useRef, useMemo } from "react"
-import SimplexNoise from "simplex-noise"
+//import SimplexNoise from "simplex-noise"
 import { useFrame, useLoader } from "@react-three/fiber"
 import { Geometry } from "three/examples/jsm/deprecated/Geometry"
 //These have been taken from "Realistic real-time grass rendering" by Eddie Lee, 2010
@@ -9,7 +11,7 @@ import bladeDiffuse from "./resources/blade_diffuse.jpg"
 import bladeAlpha from "./resources/blade_alpha.jpg"
 import "./GrassMaterial"
 
-const simplex = new SimplexNoise(Math.random)
+//const simplex = new SimplexNoise(Math.random)
 
 export default function Grass({ options = { bW: 0.12, bH: 1, joints: 5 }, width = 100, instances = 50000, ...props }) {
   const { bW, bH, joints } = options
@@ -135,8 +137,12 @@ function multiplyQuaternions(q1, q2) {
 }
 
 function getYPosition(x, z) {
-  var y = 2 * simplex.noise2D(x / 50, z / 50)
-  y += 4 * simplex.noise2D(x / 100, z / 100)
-  y += 0.2 * simplex.noise2D(x / 10, z / 10)
-  return y
+  var y = 5.2
+  
+//   2 * simplex.noise2D(x / 50, z / 50)
+//   y += 4 * simplex.noise2D(x / 100, z / 100)
+//   y += 0.2 * simplex.noise2D(x / 10, z / 10)
+    return y
 }
+
+*/
