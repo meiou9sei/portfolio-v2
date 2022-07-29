@@ -83,9 +83,7 @@ function getRandomNum(min, max) {
 // for (let i = 0; i < getRandomInt(1, 10); i++) {
 //     console.log(i);
 //     console.log(3 + i, 3 + i);
-    
 //    SheepGroup.push(<AnimatedSheep key={i} position={ [getRandomNum(-3, 3), 0, getRandomNum(-3, 3)] }
-
 //     />)
 // }
 

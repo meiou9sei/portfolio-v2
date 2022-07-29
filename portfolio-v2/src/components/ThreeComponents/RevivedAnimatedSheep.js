@@ -30,7 +30,20 @@ export default function Model(props) {
   //animation to trigger
   const godsCommand = props.sheepAnimation;
 
-  console.log("gods will is " + godsCommand)
+  /************************/
+  /* RANDOM NUM FUNCTIONS */
+  /************************/
+  //I know it's repeat code but oh well, deal with DRY later
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); 
+  }
+
+  function getRandomNum(min, max) {
+      return Math.random() * (max - min) + min;
+  }
+
   /****************/
   /* CHANGE COLOR */
   /****************/
@@ -81,7 +94,6 @@ export default function Model(props) {
     */
 
   function playSheepAnimation(){
-    console.log('reached');
     switch(godsCommand){
       case "Eater":
         actions.Eating.play();
@@ -94,7 +106,27 @@ export default function Model(props) {
   /******************/
   /* SHEEP MOVEMENT */
   /******************/
+  //sets up random y rotation - if walker, changes on pulse. if eater, sets initial and leaves it
+  useFrame((state, delta) => (
+    sheepRandomMovements()
+  ));
 
+  /* SHEEP MOVEMENT VARIABLES */
+  //TAU = 1 full rotation
+  const TAU = Math.PI * 2;
+  //sheep position and angles
+  let [yAngle, setYAngle] = useState(getRandomNum(0, TAU));
+  let xPosition = 0;
+  let zPposition = 0;
+
+  function sheepRandomMovements(){
+    if (godsCommand !== "Walker") {
+      group.current.rotation.y = yAngle;
+      //setYAngle(yAngle => getRandomNum(0, TAU)) //uncomment to make em spin
+    } else {
+      //code for walker
+    }
+  }
 
   return (
     <>

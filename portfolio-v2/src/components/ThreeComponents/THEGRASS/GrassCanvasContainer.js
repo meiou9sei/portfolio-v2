@@ -73,7 +73,8 @@ const GrassCanvasContainer = () => {
 
             { SheepGroup }           
 
-            <RevivedAnimatedSheep scale={sheepScale} sheepAnimation={"Eater"} position={[-6, -1, 7]} />
+            {/* <RevivedAnimatedSheep scale={sheepScale} sheepAnimation={"Eater"} position={[-6, -1, 7]} /> */}
+
             {/* <RevivedAnimatedSheep scale={sheepScale} position={[6, -1, 8]} color="#ff0000" />
             <RevivedAnimatedSheep scale={sheepScale} position={[3, -1, 5]} color="#00ffc9" />
             <RevivedAnimatedSheep scale={sheepScale} position={[0, -1, 3]} color="#9e00ff" />
