@@ -16,18 +16,18 @@ function getRandomNum(min, max) {
 
 //SHEEP SETTINGS
 const sheepScale = 3;
-//spawn position min and max x and z
+//spawn position min and max x and z. also their movement range
 const spawnPosMinX = -50;
 const spawnPosMaxX = 50;
-const spawnPosMinZ = 5;
-const spawnPosMaxZ = -50;
+const spawnPosMinZ = 7; //change this according to camera setting so sheep don't clip top of Canvas
+const spawnPosMaxZ = -25;
 
 //spawns random number of sheep 
-const minSheep = 1;
-const maxSheep = 10;
+const minSheepCount = 1;
+const maxSheepCount = 10;
 let SheepGroup = [];
 //scroll down for sheep spawner formula
-for (let i = 0; i < getRandomInt(minSheep, maxSheep); i++) {
+for (let i = 0; i < getRandomInt(minSheepCount, maxSheepCount); i++) {
     console.log("sheep number " + i);
     SheepGroup.push(<RevivedAnimatedSheep 
         key={i} 
@@ -56,7 +56,7 @@ const GrassCanvasContainer = () => {
             <CameraHelper />
 
             {/* camera orbital controls */}
-            <CameraController /> 
+            {/* <CameraController />  */}
 
             {/* lights */}
             <ambientLight intensity={0.1} />
@@ -64,7 +64,7 @@ const GrassCanvasContainer = () => {
 
             <Grass position={ [0, 0, 0] }/>
 
-            { SheepGroup }
+            { SheepGroup }           
 
             {/* <RevivedAnimatedSheep scale={3} position={[6, -1, 8]} color="#ff0000" />
             <RevivedAnimatedSheep scale={3} position={[3, -1, 5]} color="#00ffc9" />
@@ -96,7 +96,7 @@ function getValidSpawnCoords(Ax, Ay, Bx, By, Cx, Cy) {
         validCoord = checkIfCoordInTriangle(Ax, Ay, Bx, By, Cx, Cy, x, z);
     }
 
-    return [x, 0, z];
+    return [x, -1, z];
 }
 
 /* based on this math https://www.youtube.com/watch?v=HYAgJN3x4GA, 
