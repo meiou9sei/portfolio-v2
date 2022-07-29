@@ -97,7 +97,7 @@ const CanvasGeneral = () => {
     return ( 
         <div id="canvas-container" style={{ height: '100vh', position: 'absolute', top: 0, width: '100%', pointerEvents: 'none' }}>
             {/* , pointerEvents: 'none' */}
-            <Canvas>
+            <Canvas >
 
                 <CanvasContents />
 

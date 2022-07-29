@@ -42,8 +42,9 @@ export default function Grass({ options = { bW: 0.12, bH: 1, joints: 5 }, width 
         <grassMaterial ref={materialRef} map={texture} alphaMap={alphaMap} toneMapped={false} />
       </mesh>
       <mesh position={[0, -1, 0]} rotation-x={Math.PI * -0.5} /* geometry={groundGeo} */ >
-        <planeBufferGeometry attach="geometry" args={[25, 15]} />
-        <meshStandardMaterial color="yellow" />
+        {/* planeBufferGeometry args is x and y length of plane */}
+        <planeBufferGeometry attach="geometry" args={[150, 150]} />
+        <meshStandardMaterial color="black" />
       </mesh>
     </group>
   )
