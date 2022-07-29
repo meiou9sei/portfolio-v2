@@ -7,11 +7,15 @@ import { useGLTF, useAnimations, useCursor } from "@react-three/drei";
 
 /* skeleton utils */
 import { SkeletonUtils } from "three-stdlib";
-import { useGraph } from "@react-three/fiber";
+import { useGraph, useFrame } from "@react-three/fiber";
 
 /* future me, confused what's going on? worry not, reference this bad boi: https://codesandbox.io/s/gltf-animations-re-used-k8phr?file=/src/Model.js:598-635 */
 
 export default function Model(props) {
+  /****************/
+  /* SET UP STUFF */
+  /****************/
+  
   const group = useRef();
   const { materials, animations, scene } = useGLTF(
     "/NEWSheepModelwAnimations3.gltf"
@@ -22,6 +26,14 @@ export default function Model(props) {
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene])
   // useGraph creates two flat object collections for nodes and materials
   const { nodes } = useGraph(clone)
+  
+  //animation to trigger
+  const godsCommand = props.sheepAnimation;
+
+  console.log("gods will is " + godsCommand)
+  /****************/
+  /* CHANGE COLOR */
+  /****************/
 
   //sets initial color of sheep
   const randomColor = getRandomColor();
@@ -34,17 +46,54 @@ export default function Model(props) {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-}
+  }
 
-
-  // //receive sheep color
-  // const sheepColor = props.color;
-  console.log(props);
+  /****************/
+  /* CURSOR HOVER */
+  /****************/
 
   // Hover 
   const [hovered, setHovered] = useState(false);
   // Change cursor on hover-state
   useCursor(hovered);
+
+  /*******************/
+  /* SHEEP ANIMATION */
+  /*******************/
+  useFrame((state, delta) => (
+    //random animations - NOT IMPLEMENTED YET. for future
+    //sheepRandomAnimations()
+    playSheepAnimation()
+  ));
+
+    //list available sheep animation
+    //console.log(actions);
+
+    /*  
+    actions: 
+        NEWSheepModelwAnimations3.gltf
+        -zzzaTPose
+        -HeadDown
+        -Eating
+        -HeadUp
+        -Walking
+        -Spawning - "SpawnAnimation"
+    */
+
+  function playSheepAnimation(){
+    console.log('reached');
+    switch(godsCommand){
+      case "Eater":
+        actions.Eating.play();
+        break;
+      default:
+        actions.zzzaTPose.play();
+    }
+  }
+
+  /******************/
+  /* SHEEP MOVEMENT */
+  /******************/
 
 
   return (

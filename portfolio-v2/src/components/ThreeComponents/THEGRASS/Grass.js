@@ -11,7 +11,7 @@ import "./GrassMaterial"
 
 //const simplex = new SimplexNoise(Math.random)
 
-export default function Grass({ options = { bW: 0.12, bH: 1, joints: 5 }, width = 100, instances = 50000, ...props }) {
+export default function Grass({ options = { bW: 0.12, bH: 1, joints: 5 }, width = 250, instances = 500000, ...props }) {
   const { bW, bH, joints } = options
   const materialRef = useRef()
   const [texture, alphaMap] = useLoader(THREE.TextureLoader, [bladeDiffuse, bladeAlpha])
