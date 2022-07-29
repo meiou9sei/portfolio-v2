@@ -26,14 +26,17 @@ const spawnPosMaxZ = -50;
 const minSheep = 1;
 const maxSheep = 10;
 let SheepGroup = [];
+//scroll down for sheep spawner formula
 for (let i = 0; i < getRandomInt(minSheep, maxSheep); i++) {
     console.log("sheep number " + i);
     SheepGroup.push(<RevivedAnimatedSheep 
         key={i} 
-        position={ [getRandomNum(spawnPosMinX, spawnPosMaxX), 0, getRandomNum(spawnPosMinZ, spawnPosMaxZ)]}
+        position={ getValidSpawnCoords(0, spawnPosMinZ, spawnPosMinX, spawnPosMaxZ, spawnPosMaxX, spawnPosMaxZ) }
         scale={sheepScale} 
         />)
 }
+
+
 
 /* to help set up camera - use w/ orbital controls on to place camera */
 function CameraHelper() {
@@ -72,3 +75,39 @@ const GrassCanvasContainer = () => {
 }
  
 export default GrassCanvasContainer;
+
+
+
+
+/* THE SHEEP SPAWNER FORMULA */
+
+function getValidSpawnCoords(Ax, Ay, Bx, By, Cx, Cy) {
+    
+    let x; 
+    let y = 0; 
+    let z;
+
+    let validCoord = false;
+
+    while(!validCoord) {
+        x = getRandomNum(spawnPosMinX, spawnPosMaxX);
+        z = getRandomNum(spawnPosMinZ, spawnPosMaxZ);
+
+        validCoord = checkIfCoordInTriangle(Ax, Ay, Bx, By, Cx, Cy, x, z);
+    }
+
+    return [x, 0, z];
+}
+
+/* based on this math https://www.youtube.com/watch?v=HYAgJN3x4GA, 
+checks if random coordinate is within triangle or not */
+function checkIfCoordInTriangle(Ax, Ay, Bx, By, Cx, Cy, Px, Py) {
+    const w1 = (Ax*(Cy-Ay)+(Py-Ay)*(Cx-Ax)-Px*(Cy-Ay)) / ((By-Ay)*(Cx-Ax)-(Bx-Ax)*(Cy-Ay));
+    const w2 = (Py-Ay-w1*(By-Ay)) / (Cy-Ay);
+
+    if (w1 >= 0 && w2 >= 0 && (w1+w2) <= 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
