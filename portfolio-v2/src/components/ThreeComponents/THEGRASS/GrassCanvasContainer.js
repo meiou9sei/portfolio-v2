@@ -14,10 +14,13 @@ const spawnPosMaxX = 100;
 const spawnPosY = -1;
 const spawnPosMinZ = 8; //change this according to camera setting so sheep don't clip top of Canvas
 const spawnPosMaxZ = -15;
+//NOTE: IF YOU CHANGE THESE: you need to change the spawn sections of sheep to make it look good on camera
+const spawnSquareMaxX = 62;
+const spawnSquareMinX = -62;
 
 //spawns random number of sheep 
-const minSheepCount = 15;
-const maxSheepCount = 15;
+const minSheepCount = 1000;
+const maxSheepCount = 1000;
 let SheepGroup = [];
 //scroll down for sheep spawner formula
 for (let i = 0; i < getRandomInt(minSheepCount, maxSheepCount); i++) {
@@ -43,7 +46,7 @@ const grassPlotPosition = [0, -0.5, 0];
 
 /* to help set up camera - use w/ orbital controls on to place camera */
 function CameraHelper() {
-    const camera = new PerspectiveCamera(cameraFOV, 1, 1, 3);
+    const camera = new PerspectiveCamera(cameraFOV, 8, 2, 25);
     return <group position={ cameraPosition } >
         <cameraHelper args={[camera]} />
     </group>;
@@ -52,6 +55,8 @@ function CameraHelper() {
 /**********/
 /* CANVAS */
 /**********/
+
+
 
 const GrassCanvasContainer = () => {
     return (
@@ -73,7 +78,7 @@ const GrassCanvasContainer = () => {
 
             { SheepGroup }           
 
-            {/* <RevivedAnimatedSheep scale={sheepScale} sheepAnimation={"Eater"} position={[-6, -1, 7]} /> */}
+            <RevivedAnimatedSheep scale={sheepScale} sheepAnimation={"Walker"} position={[-30, 3, -2]} />
 
             {/* <RevivedAnimatedSheep scale={sheepScale} position={[6, -1, 8]} color="#ff0000" />
             <RevivedAnimatedSheep scale={sheepScale} position={[3, -1, 5]} color="#00ffc9" />
@@ -121,6 +126,10 @@ function getValidSpawnCoords(Ax, Ay, Bx, By, Cx, Cy) {
         z = getRandomNum(spawnPosMinZ, spawnPosMaxZ);
 
         validCoord = checkIfCoordInTriangle(Ax, Ay, Bx, By, Cx, Cy, x, z);
+        if (!(spawnSquareMinX < x) || !(x < spawnSquareMaxX)) {
+            console.log(x);
+            validCoord = false;
+        }
     }
 
     return [x, y, z];
@@ -138,6 +147,8 @@ function checkIfCoordInTriangle(Ax, Ay, Bx, By, Cx, Cy, Px, Py) {
         return false;
     }
 }
+
+//walkers can walk away if they want
 
 /********************************/
 /* SET SHEEP ANIMATION RANDOMLY */
