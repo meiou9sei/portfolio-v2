@@ -42,6 +42,7 @@ function App() {
         <GrassCanvasContainer />
 
         <Footer />
+        <div className="EmptyBottomDiv" /> {/* gives enough space at bottom now that grass covers 25vh */}
       </div>
     </Router>
   );
