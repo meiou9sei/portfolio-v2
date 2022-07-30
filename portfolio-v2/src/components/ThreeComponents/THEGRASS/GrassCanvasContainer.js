@@ -9,18 +9,22 @@ import RevivedAnimatedSheep from './../RevivedAnimatedSheep';
 /******************/
 const sheepScale = 3;
 //spawn position min and max x and z. also their movement range
-const spawnPosMinX = -100;
-const spawnPosMaxX = 100;
+const spawnPosMinX = -90;
+const spawnPosMaxX = 90;
 const spawnPosY = -1;
 const spawnPosMinZ = 8; //change this according to camera setting so sheep don't clip top of Canvas
 const spawnPosMaxZ = -15;
 //NOTE: IF YOU CHANGE THESE: you need to change the spawn sections of sheep to make it look good on camera
-const spawnSquareMaxX = 62;
 const spawnSquareMinX = -62;
+const spawnSquareMaxX = 62;
+//area walkers can travel in
+const walkersMinX = -90;
+const walkersMaxX = 90;
+const walkersMaxZ = -25;
 
 //spawns random number of sheep 
-const minSheepCount = 1000;
-const maxSheepCount = 1000;
+const minSheepCount = 5;
+const maxSheepCount = 5;
 let SheepGroup = [];
 //scroll down for sheep spawner formula
 for (let i = 0; i < getRandomInt(minSheepCount, maxSheepCount); i++) {
@@ -78,7 +82,7 @@ const GrassCanvasContainer = () => {
 
             { SheepGroup }           
 
-            <RevivedAnimatedSheep scale={sheepScale} sheepAnimation={"Walker"} position={[-30, 3, -2]} />
+            <RevivedAnimatedSheep position={[-90, -1, -25]} name={"landmarkSheep"} scale={sheepScale} sheepAnimation={"Walker"} />
 
             {/* <RevivedAnimatedSheep scale={sheepScale} position={[6, -1, 8]} color="#ff0000" />
             <RevivedAnimatedSheep scale={sheepScale} position={[3, -1, 5]} color="#00ffc9" />
