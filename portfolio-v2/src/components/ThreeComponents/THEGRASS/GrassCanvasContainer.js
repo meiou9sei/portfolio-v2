@@ -23,8 +23,8 @@ const walkersMaxX = 90;
 const walkersMaxZ = -25;
 
 //spawns random number of sheep 
-const minSheepCount = 5;
-const maxSheepCount = 5;
+const minSheepCount = 50;
+const maxSheepCount = 50;
 let SheepGroup = [];
 //scroll down for sheep spawner formula
 for (let i = 0; i < getRandomInt(minSheepCount, maxSheepCount); i++) {
@@ -36,6 +36,12 @@ for (let i = 0; i < getRandomInt(minSheepCount, maxSheepCount); i++) {
         scale={sheepScale} 
         />)
 }
+
+/******************/
+/* CLOCK SETTINGS */
+/******************/
+//const time = state.clock.getElapsedTime();
+
 
 /******************/
 /* OTHER SETTINGS */
