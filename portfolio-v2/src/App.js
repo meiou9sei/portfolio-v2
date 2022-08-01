@@ -7,7 +7,9 @@ import ContactPage from './components/Pages/ContactComponents/ContactPage';
 import Header from './components/Pages/Header';
 import Footer from "./components/Pages/Footer";
 
-import CanvasContainerBottomSheep from "./components/ThreeComponents/CanvasContainer";
+import CanvasGeneral from "./components/ThreeComponents/CanvasContainer";
+import GrassCanvasContainer from './components/ThreeComponents/THEGRASS/GrassCanvasContainer';
+
 
 //css
 import './css/styles.scss';
@@ -36,9 +38,11 @@ function App() {
           </Switch>
         </div>
 
-        <CanvasContainerBottomSheep />
+        <CanvasGeneral />
+        <GrassCanvasContainer />
 
         <Footer />
+        <div className="EmptyBottomDiv" /> {/* gives enough space at bottom now that grass covers 25vh */}
       </div>
     </Router>
   );

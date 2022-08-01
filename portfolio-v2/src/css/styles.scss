@@ -49,6 +49,13 @@ table {
 
 /* CSS RESET ^ */
 
+/********/
+/* HTML */
+/********/
+html {
+	scroll-behavior: smooth;
+}
+
 /**********/
 /* COLORS */
 /**********/
@@ -115,12 +122,18 @@ footer {
 	margin-bottom: 0;
 }
 
+.EmptyBottomDiv {
+	padding: 12.5vh;
+}
+
 /*********/
 /* FONTS */
 /*********/
 body {
 	font-family: 'Open Sans', sans-serif;
 	background-color: var(--bg2)
+	//background-color: red;
+
 }
 
 a {
@@ -149,6 +162,15 @@ h2 {
 
 h3 {
 	font-size: 1.5rem;
+}
+
+footer {
+	text-align: center;
+	line-height: 1.25rem;
+}
+
+footer em {
+	font-style: italic;
 }
 
 footer a {
@@ -201,6 +223,10 @@ footer a:hover {
 
 .subpage-main header li {
     margin-bottom: 0px;
+}
+
+.subpage-main .extraspace {
+	padding-bottom: 20vh;
 }
 
 /* FONTS */

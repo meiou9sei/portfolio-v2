@@ -1,9 +1,14 @@
+//imports general
 import { Canvas } from "@react-three/fiber";
 import Box from "./Box";
 import Box2 from "./Box2";
 import Sheep from "./Sheep";
 import AnimatedSheep from "./AnimatedSheep";
-import CameraController from "./CameraController";
+
+//canvas contents
+import CanvasContents from "./CanvasContents";
+
+
 
 //the horde of sheep
 // import AnimatedSheep1 from "./AnimatedSheepFarm/AnimatedSheep1";
@@ -78,23 +83,21 @@ function getRandomNum(min, max) {
 // for (let i = 0; i < getRandomInt(1, 10); i++) {
 //     console.log(i);
 //     console.log(3 + i, 3 + i);
-    
 //    SheepGroup.push(<AnimatedSheep key={i} position={ [getRandomNum(-3, 3), 0, getRandomNum(-3, 3)] }
-
 //     />)
 // }
 
 //nvm neither worked 😔
 
-const CanvasContainerBottomSheep = () => {
-    return ( 
-        <div id="canvas-container" style={{ height: '500px' }}>
-            <Canvas>
-                <CameraController />
+const CanvasGeneral = () => {
 
-                {/* lights */}
-                <ambientLight intensity={0.1} />
-                <directionalLight color="white" position={[-3, 10, 5]} />
+
+    return ( 
+        <div id="canvas-container" style={{ height: '100vh', position: 'absolute', top: 0, width: '100%', pointerEvents: 'none' }}>
+            {/* , pointerEvents: 'none' */}
+            <Canvas >
+
+                <CanvasContents />
 
                 {/* objects */}
                 {/* <Box /> */}
@@ -104,19 +107,12 @@ const CanvasContainerBottomSheep = () => {
                 {/* SheepGroup */} 
 
                 {/* Spawn one sheep */}
-                {/* <AnimatedSheep position={[-3, 0, 0]}/> */}
+                {/* <AnimatedSheep position={[3, 0, 0]}/>
+                <AnimatedSheep position={[-3, 0, 0]}/>
 
-                <mesh>
-                    <boxGeometry args={[1, 1, 1]} position={[-5, 0, 0]} />
-                    <meshStandardMaterial color={"red"}/>
-                </mesh>
-                <mesh>
-                    <boxGeometry args={[1, 1, 1]} position={[5, 0, 0]} />
-                    <meshStandardMaterial color={"green"}/>
-                </mesh>
+                <Box position={[3, 0, 0]}/> */}
+                {/* <Box2 position={[-5, 0, 0]}/> */}
 
-                <Box position={[-3, 0, 0]} />
-                <Box position={[3, 0, 0]} />
 
 
 
@@ -125,6 +121,6 @@ const CanvasContainerBottomSheep = () => {
     );
 }
  
-export default CanvasContainerBottomSheep;
+export default CanvasGeneral;
 
 

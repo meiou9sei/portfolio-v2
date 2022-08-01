@@ -8,7 +8,7 @@ const CameraController = () => {
        () => {
           const controls = new OrbitControls(camera, gl.domElement);
           controls.minDistance = 3;
-          controls.maxDistance = 20;
+//          controls.maxDistance = 20;
           return () => {
             controls.dispose();
           };
