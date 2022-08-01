@@ -8,6 +8,8 @@ const ContactPage = () => {
                 <li><a href="https://www.linkedin.com/in/cameron-avvampato-797406225/">LinkedIn</a></li>
                 <li><a href="https://github.com/meiou9sei">Github</a></li>
             </ul>
+            
+            <div className="extraspace"></div>
         </main>
     );
 }

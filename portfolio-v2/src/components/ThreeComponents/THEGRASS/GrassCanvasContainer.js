@@ -81,10 +81,10 @@ const GrassCanvasContainer = () => {
         style={{ position: 'fixed', left: 0, bottom: 0, height: '25vh' }}
         camera={{ position: cameraPosition , fov: cameraFOV }}
         >
-            <CameraHelper />
+            {/* <CameraHelper /> */}
 
             {/* camera orbital controls */}
-            <CameraController /> 
+            {/* <CameraController />  */}
 
             {/* lights */}
             <ambientLight intensity={0.1} />
@@ -210,10 +210,10 @@ function getRandomSheepAnimation() {
     let godsNum = getRandomNum(0, 1);
     let godsCommand = "TPose";
 
-    if (godsNum < 0.5) {
+    if (godsNum < 0.7) {
         //console.log("YOU SHALL BE AN EATER");
         godsCommand = "Eater";
-    } else if (godsNum < 0.7) {
+    } else if (godsNum < 0.8) {
         //console.log("YOU SHALL BE A WALKER");
         godsCommand = "Walker";
     } else {
