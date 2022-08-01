@@ -23,19 +23,22 @@ const walkersMaxX = 90;
 const walkersMaxZ = -25;
 
 //spawns random number of sheep 
-const minSheepCount = 10;
-const maxSheepCount = 10;
-let SheepGroup = [];
+const minSheepCount = 3;
+const maxSheepCount = 3;
+let sheepGroup = [];
+let sheepXPosArray = []; //keeps track of Xs already used for sheep spawn, so 2 sheep don't spawn on top of eachother
 //scroll down for sheep spawner formula
 //i starts at 1, as one eater sheep will spawn by default, within scren width
 for (let i = 1; i < getRandomInt(minSheepCount, maxSheepCount); i++) {
     console.log("sheep number " + (i + 1));
-    SheepGroup.push(<RevivedAnimatedSheep 
+    let spawnPosX = getUniqueInt(sheepXPosArray, spawnPosMaxX, spawnPosMinX);
+    sheepXPosArray.push(spawnPosX);
+    sheepGroup.push(<RevivedAnimatedSheep 
         key={i} 
         //if want to spawn in triangle area matching a 1920 screen:
         // position={ getValidSpawnCoords(0, spawnPosMinZ, spawnPosMinX, spawnPosMaxZ, spawnPosMaxX, spawnPosMaxZ) }
         //if want spawn in rectangle area:
-        position={[getRandomInt(spawnPosMaxX, spawnPosMinX), -1, getRandomInt(spawnPosMaxZ, spawnPosMinZ)]}
+        position={[spawnPosX, -1, getRandomInt(spawnPosMaxZ, spawnPosMinZ)]}
         sheepAnimation={ getRandomSheepAnimation() }
         scale={sheepScale} 
         />)
@@ -82,11 +85,11 @@ const GrassCanvasContainer = () => {
 
             <Grass position={ grassPlotPosition } scale={grassPlotSize} />
 
-            { SheepGroup } 
+            { sheepGroup } 
             {/*"godsChosenSheep" will spawn 1 eater within screen width"*/}          
             <RevivedAnimatedSheep position={[returnPosWithinScreen(), -1, 0]} name={"godsChosenSheep"} scale={sheepScale} sheepAnimation={"Eater"} />
 
-            <RevivedAnimatedSheep position={[-9, -1, 0]} name={"landmarkSheep"} scale={sheepScale} sheepAnimation={"Walker"} />
+            {/* <RevivedAnimatedSheep position={[-9, -1, 0]} name={"landmarkSheep"} scale={sheepScale} sheepAnimation={"Walker"} /> */}
 
             {/* <RevivedAnimatedSheep scale={sheepScale} position={[6, -1, 8]} color="#ff0000" />
             <RevivedAnimatedSheep scale={sheepScale} position={[3, -1, 5]} color="#00ffc9" />
@@ -118,6 +121,17 @@ function getRandomNum(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+function getUniqueInt(array, min, max) {
+    let isUnique = false;
+    let uniqueN;
+    while(!isUnique) {
+        uniqueN = getRandomInt(min, max);
+        isUnique = !array.includes(uniqueN);
+        console.log("num is " + uniqueN + " and array contains " + array + " thus uniqueN is unique: " + isUnique);
+    }
+    return uniqueN;
+}
+
 /*****************************/
 /* THE SHEEP SPAWNER FORMULA */
 /*****************************/
@@ -126,7 +140,7 @@ function returnPosWithinScreen() {
     //per 100 px sWidth, can spawn -3 or 3 X range
     let sWidth = window.screen.width / 100;
     console.log(sWidth);
-    let spawnXLocation = getRandomNum(-sWidth * 3, sWidth * 3);
+    let spawnXLocation = getRandomInt(-sWidth * 3, sWidth * 3);
     console.log(spawnXLocation);
     return spawnXLocation;
 }
