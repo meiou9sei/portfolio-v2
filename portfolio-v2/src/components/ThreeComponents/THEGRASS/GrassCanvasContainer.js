@@ -32,7 +32,7 @@ let defaultSheepSpawnX = returnPosWithinScreen();
 let defaultSheepSpawnZ = getRandomInt(9, 12);
 //scroll down for sheep spawner formula
 //i starts at 1, as one eater sheep will spawn by default, within scren width
-console.log(sheepCount);
+//console.log(sheepCount);
 for (let i = 1; i < sheepCount; i++) {
     //console.log("sheep number " + (i + 1));
     //returns unique position. if cannot after 3 tries, returns false
@@ -158,9 +158,9 @@ function getUniqueInt(array, min, max) {
 function returnPosWithinScreen() {
     //per 100 px sWidth, can spawn -3 or 3 X range
     let sWidth = window.innerWidth / 150; //should be 100 usually
-    console.log(sWidth);
+    //console.log(sWidth);
     let spawnXLocation = getRandomInt(-sWidth, sWidth);
-    console.log("default sheep spawned at " + spawnXLocation);
+    //console.log("default sheep spawned at " + spawnXLocation);
     sheepXPosArray.push(spawnXLocation);
     return spawnXLocation;
 }
