@@ -9,8 +9,8 @@ import RevivedAnimatedSheep from './../RevivedAnimatedSheep';
 /******************/
 const sheepScale = 3;
 //spawn position min and max x and z. also their movement range
-const spawnPosMinX = -90;
-const spawnPosMaxX = 90;
+const spawnPosMinX = -90; //-90
+const spawnPosMaxX = 90; //90
 const spawnPosY = -1;
 const spawnPosMinZ = 8; //change this according to camera setting so sheep don't clip top of Canvas
 const spawnPosMaxZ = -15;
@@ -23,25 +23,31 @@ const walkersMaxX = 90;
 const walkersMaxZ = -25;
 
 //spawns random number of sheep 
-const minSheepCount = 3;
-const maxSheepCount = 3;
+const minSheepCount = 1;
+const maxSheepCount = 10;
+const sheepCount = getRandomInt(minSheepCount, maxSheepCount);
 let sheepGroup = [];
 let sheepXPosArray = []; //keeps track of Xs already used for sheep spawn, so 2 sheep don't spawn on top of eachother
+let defaultSheepSpawnX = returnPosWithinScreen();
 //scroll down for sheep spawner formula
 //i starts at 1, as one eater sheep will spawn by default, within scren width
-for (let i = 1; i < getRandomInt(minSheepCount, maxSheepCount); i++) {
-    console.log("sheep number " + (i + 1));
+console.log(sheepCount);
+for (let i = 1; i < sheepCount; i++) {
+    //console.log("sheep number " + (i + 1));
+    //returns unique position. if cannot after 3 tries, returns false
     let spawnPosX = getUniqueInt(sheepXPosArray, spawnPosMaxX, spawnPosMinX);
-    sheepXPosArray.push(spawnPosX);
-    sheepGroup.push(<RevivedAnimatedSheep 
-        key={i} 
-        //if want to spawn in triangle area matching a 1920 screen:
-        // position={ getValidSpawnCoords(0, spawnPosMinZ, spawnPosMinX, spawnPosMaxZ, spawnPosMaxX, spawnPosMaxZ) }
-        //if want spawn in rectangle area:
-        position={[spawnPosX, -1, getRandomInt(spawnPosMaxZ, spawnPosMinZ)]}
-        sheepAnimation={ getRandomSheepAnimation() }
-        scale={sheepScale} 
-        />)
+    if (spawnPosX) {
+        sheepXPosArray.push(spawnPosX);
+        sheepGroup.push(<RevivedAnimatedSheep 
+            key={i} 
+            //if want to spawn in triangle area matching a 1920 screen:
+            // position={ getValidSpawnCoords(0, spawnPosMinZ, spawnPosMinX, spawnPosMaxZ, spawnPosMaxX, spawnPosMaxZ) }
+            //if want spawn in rectangle area:
+            position={[spawnPosX, -1, getRandomInt(spawnPosMaxZ, spawnPosMinZ)]}
+            sheepAnimation={ getRandomSheepAnimation() }
+            scale={sheepScale} 
+            />)
+    }
 }
 
 /******************/
@@ -87,7 +93,7 @@ const GrassCanvasContainer = () => {
 
             { sheepGroup } 
             {/*"godsChosenSheep" will spawn 1 eater within screen width"*/}          
-            <RevivedAnimatedSheep position={[returnPosWithinScreen(), -1, 0]} name={"godsChosenSheep"} scale={sheepScale} sheepAnimation={"Eater"} />
+            <RevivedAnimatedSheep position={[defaultSheepSpawnX, -1, 0]} name={"godsChosenSheep"} scale={sheepScale} sheepAnimation={"Eater"} />
 
             {/* <RevivedAnimatedSheep position={[-9, -1, 0]} name={"landmarkSheep"} scale={sheepScale} sheepAnimation={"Walker"} /> */}
 
@@ -114,7 +120,7 @@ export default GrassCanvasContainer;
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min); 
+    return Math.floor(Math.random() * (max - min) + min);
 }
 
 function getRandomNum(min, max) {
@@ -124,10 +130,22 @@ function getRandomNum(min, max) {
 function getUniqueInt(array, min, max) {
     let isUnique = false;
     let uniqueN;
+    let infLoopPrevent = 0;
     while(!isUnique) {
         uniqueN = getRandomInt(min, max);
-        isUnique = !array.includes(uniqueN);
-        console.log("num is " + uniqueN + " and array contains " + array + " thus uniqueN is unique: " + isUnique);
+        if (array.includes(uniqueN) || array.includes(uniqueN - 1) || array.includes(uniqueN + 1) || array.includes(uniqueN + 2) || array.includes(uniqueN - 2)) {
+            isUnique = false;
+            infLoopPrevent++;
+        } else {
+            isUnique = true;
+        }
+        
+        //check if uniqueN is within 2 units of any x in array
+        //console.log("num is " + uniqueN + " and array contains " + array + " thus uniqueN is unique: " + isUnique);
+        //console.log("infLoopPrevent at " + infLoopPrevent);
+        if (infLoopPrevent > 3) {
+            return false;
+        }
     }
     return uniqueN;
 }
@@ -139,9 +157,10 @@ function getUniqueInt(array, min, max) {
 function returnPosWithinScreen() {
     //per 100 px sWidth, can spawn -3 or 3 X range
     let sWidth = window.screen.width / 100;
-    console.log(sWidth);
+    //console.log(sWidth);
     let spawnXLocation = getRandomInt(-sWidth * 3, sWidth * 3);
-    console.log(spawnXLocation);
+    //console.log("default sheep spawned at " + spawnXLocation);
+    sheepXPosArray.push(spawnXLocation);
     return spawnXLocation;
 }
 
