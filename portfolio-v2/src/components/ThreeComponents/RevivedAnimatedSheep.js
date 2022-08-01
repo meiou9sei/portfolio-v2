@@ -98,6 +98,9 @@ export default function Model(props) {
       case "Eater":
         actions.Eating.play();
         break;
+      case "Walker": 
+      actions.Walking.play();
+        break;
       default:
         actions.zzzaTPose.play();
     }
