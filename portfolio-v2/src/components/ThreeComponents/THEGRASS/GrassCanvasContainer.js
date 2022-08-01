@@ -23,25 +23,23 @@ const walkersMaxX = 90;
 const walkersMaxZ = -25;
 
 //spawns random number of sheep 
-const minSheepCount = 50;
-const maxSheepCount = 50;
+const minSheepCount = 10;
+const maxSheepCount = 10;
 let SheepGroup = [];
 //scroll down for sheep spawner formula
-for (let i = 0; i < getRandomInt(minSheepCount, maxSheepCount); i++) {
-    console.log("sheep number " + i);
+//i starts at 1, as one eater sheep will spawn by default, within scren width
+for (let i = 1; i < getRandomInt(minSheepCount, maxSheepCount); i++) {
+    console.log("sheep number " + (i + 1));
     SheepGroup.push(<RevivedAnimatedSheep 
         key={i} 
-        position={ getValidSpawnCoords(0, spawnPosMinZ, spawnPosMinX, spawnPosMaxZ, spawnPosMaxX, spawnPosMaxZ) }
+        //if want to spawn in triangle area matching a 1920 screen:
+        // position={ getValidSpawnCoords(0, spawnPosMinZ, spawnPosMinX, spawnPosMaxZ, spawnPosMaxX, spawnPosMaxZ) }
+        //if want spawn in rectangle area:
+        position={[getRandomInt(spawnPosMaxX, spawnPosMinX), -1, getRandomInt(spawnPosMaxZ, spawnPosMinZ)]}
         sheepAnimation={ getRandomSheepAnimation() }
         scale={sheepScale} 
         />)
 }
-
-/******************/
-/* CLOCK SETTINGS */
-/******************/
-//const time = state.clock.getElapsedTime();
-
 
 /******************/
 /* OTHER SETTINGS */
@@ -66,8 +64,6 @@ function CameraHelper() {
 /* CANVAS */
 /**********/
 
-
-
 const GrassCanvasContainer = () => {
     return (
         <Canvas 
@@ -86,9 +82,11 @@ const GrassCanvasContainer = () => {
 
             <Grass position={ grassPlotPosition } scale={grassPlotSize} />
 
-            { SheepGroup }           
+            { SheepGroup } 
+            {/*"godsChosenSheep" will spawn 1 eater within screen width"*/}          
+            <RevivedAnimatedSheep position={[returnPosWithinScreen(), -1, 0]} name={"godsChosenSheep"} scale={sheepScale} sheepAnimation={"Eater"} />
 
-            <RevivedAnimatedSheep position={[-90, -1, -25]} name={"landmarkSheep"} scale={sheepScale} sheepAnimation={"Walker"} />
+            <RevivedAnimatedSheep position={[-9, -1, 0]} name={"landmarkSheep"} scale={sheepScale} sheepAnimation={"Walker"} />
 
             {/* <RevivedAnimatedSheep scale={sheepScale} position={[6, -1, 8]} color="#ff0000" />
             <RevivedAnimatedSheep scale={sheepScale} position={[3, -1, 5]} color="#00ffc9" />
@@ -123,6 +121,16 @@ function getRandomNum(min, max) {
 /*****************************/
 /* THE SHEEP SPAWNER FORMULA */
 /*****************************/
+//default sheep ("godsChosenSheep")
+function returnPosWithinScreen() {
+    //per 100 px sWidth, can spawn -3 or 3 X range
+    let sWidth = window.screen.width / 100;
+    console.log(sWidth);
+    let spawnXLocation = getRandomNum(-sWidth * 3, sWidth * 3);
+    console.log(spawnXLocation);
+    return spawnXLocation;
+}
+
 function getValidSpawnCoords(Ax, Ay, Bx, By, Cx, Cy) {
     
     let x; 
@@ -137,7 +145,6 @@ function getValidSpawnCoords(Ax, Ay, Bx, By, Cx, Cy) {
 
         validCoord = checkIfCoordInTriangle(Ax, Ay, Bx, By, Cx, Cy, x, z);
         if (!(spawnSquareMinX < x) || !(x < spawnSquareMaxX)) {
-            console.log(x);
             validCoord = false;
         }
     }
@@ -147,6 +154,7 @@ function getValidSpawnCoords(Ax, Ay, Bx, By, Cx, Cy) {
 
 /* based on this math https://www.youtube.com/watch?v=HYAgJN3x4GA, 
 checks if random coordinate is within triangle or not */
+//would have to adjust triangle settings based on screen width, so unused
 function checkIfCoordInTriangle(Ax, Ay, Bx, By, Cx, Cy, Px, Py) {
     const w1 = (Ax*(Cy-Ay)+(Py-Ay)*(Cx-Ax)-Px*(Cy-Ay)) / ((By-Ay)*(Cx-Ax)-(Bx-Ax)*(Cy-Ay));
     const w2 = (Py-Ay-w1*(By-Ay)) / (Cy-Ay);
@@ -169,10 +177,10 @@ function getRandomSheepAnimation() {
     let godsCommand = "TPose";
 
     if (godsNum < 0.5) {
-        console.log("YOU SHALL BE AN EATER");
+        //console.log("YOU SHALL BE AN EATER");
         godsCommand = "Eater";
     } else {
-        console.log("YOU SHALL BE A WALKER");
+        //console.log("YOU SHALL BE A WALKER");
         godsCommand = "Walker";
     }
 

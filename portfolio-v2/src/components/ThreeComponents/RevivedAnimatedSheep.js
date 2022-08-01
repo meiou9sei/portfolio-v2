@@ -108,7 +108,7 @@ export default function Model(props) {
   /******************/
   //sets up random y rotation - if walker, changes on pulse. if eater, sets initial and leaves it
   useFrame((state, delta) => (
-    sheepRandomMovements()
+    sheepRandomMovements(state, delta)
   ));
 
   /* SHEEP MOVEMENT VARIABLES */
@@ -119,7 +119,15 @@ export default function Model(props) {
   let xPosition = 0;
   let zPposition = 0;
 
-  function sheepRandomMovements(){
+  function sheepRandomMovements(state, delta){
+    /******************/
+    /* CLOCK SETTINGS */
+    /******************/
+    //https://tympanus.net/codrops/2020/12/17/recreating-a-dave-whyte-animation-in-react-three-fiber/
+
+    //console.log(state);
+    //console.log(delta);
+
     if (godsCommand !== "Walker") {
       group.current.rotation.y = yAngle;
       //setYAngle(yAngle => getRandomNum(0, TAU)) //uncomment to make em spin
@@ -127,6 +135,8 @@ export default function Model(props) {
       //code for walker
     }
   }
+
+
 
   return (
     <>
