@@ -162,8 +162,23 @@ function returnPosWithinScreen() {
     //per 100 px sWidth, can spawn -3 or 3 X range
     let sWidth = window.innerWidth / 150; //should be 100 usually
     //console.log(sWidth);
-    let spawnXLocation = getRandomInt(-sWidth, sWidth);
+    let spawnXLocation = getUniqueInt(sheepXPosArray, -sWidth, sWidth);
     //console.log("default sheep spawned at " + spawnXLocation);
+    console.log(spawnXLocation);
+    let temp;
+    if (spawnXLocation !== 0) {
+        if (!spawnXLocation) {
+            console.log('enteredthebeast, sheepXPosArray[0] is ' + sheepXPosArray[0])
+            if (sheepXPosArray[0] < 0) {
+                temp = sheepXPosArray[0] + 2;
+            } else {
+                temp = sheepXPosArray[0] - 2;
+            }
+            console.log(spawnXLocation + "    " + temp);
+            sheepXPosArray.push(temp);
+            return temp;
+        }
+    }
     sheepXPosArray.push(spawnXLocation);
     return spawnXLocation;
 }
