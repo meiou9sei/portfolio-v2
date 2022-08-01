@@ -213,7 +213,7 @@ function getRandomSheepAnimation() {
     if (godsNum < 0.7) {
         //console.log("YOU SHALL BE AN EATER");
         godsCommand = "Eater";
-    } else if (godsNum < 0.8) {
+    } else if (godsNum < 0.75) {
         //console.log("YOU SHALL BE A WALKER");
         godsCommand = "Walker";
     } else {
