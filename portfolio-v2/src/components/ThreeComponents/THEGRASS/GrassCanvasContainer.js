@@ -23,13 +23,15 @@ const walkersMaxX = 90;
 const walkersMaxZ = -25;
 
 //spawns random number of sheep 
-const minSheepCount = 1;
-const maxSheepCount = 15;
+const minSheepCount = 5;
+const maxSheepCount = 10;
 const sheepCount = getRandomInt(minSheepCount, maxSheepCount);
 let sheepGroup = [];
 let sheepXPosArray = []; //keeps track of Xs already used for sheep spawn, so 2 sheep don't spawn on top of eachother
 let defaultSheepSpawnX = returnPosWithinScreen();
-let defaultSheepSpawnZ = getRandomInt(9, 12);
+let defaultSheep2SpawnX = returnPosWithinScreen();
+let defaultSheepSpawnZ = getRandomInt(9, 11);
+let defaultSheep2SpawnZ = getRandomInt(0, 7);
 //scroll down for sheep spawner formula
 //i starts at 1, as one eater sheep will spawn by default, within scren width
 //console.log(sheepCount);
@@ -38,7 +40,6 @@ for (let i = 1; i < sheepCount; i++) {
     //returns unique position. if cannot after 3 tries, returns false
     let spawnPosX = getUniqueInt(sheepXPosArray, spawnPosMaxX, spawnPosMinX);
     if (spawnPosX) {
-        sheepXPosArray.push(spawnPosX);
         sheepGroup.push(<RevivedAnimatedSheep 
             key={i} 
             //if want to spawn in triangle area matching a 1920 screen:
@@ -46,6 +47,7 @@ for (let i = 1; i < sheepCount; i++) {
             //if want spawn in rectangle area:
             position={[spawnPosX, -1, getRandomInt(spawnPosMaxZ, spawnPosMinZ)]}
             sheepAnimation={ getRandomSheepAnimation() }
+            name={ 'uwu' }
             scale={sheepScale} 
             />)
     }
@@ -94,7 +96,8 @@ const GrassCanvasContainer = () => {
 
             { sheepGroup } 
             {/*"godsChosenSheep" will spawn 1 eater within screen width"*/}          
-            <RevivedAnimatedSheep position={[defaultSheepSpawnX, -1, defaultSheepSpawnZ]} name={"godsChosenSheep"} scale={sheepScale} sheepAnimation={"TPoser"} />
+            <RevivedAnimatedSheep position={[defaultSheepSpawnX, -1, defaultSheepSpawnZ]} name={"..."} scale={sheepScale} sheepAnimation={"TPoser"} />
+            <RevivedAnimatedSheep position={[defaultSheep2SpawnX, -1, defaultSheep2SpawnZ]} name={"Am I my brother's keeper?"} scale={sheepScale} sheepAnimation={"Eater"} />
 
             {/* <RevivedAnimatedSheep position={[-9, -1, 0]} name={"landmarkSheep"} scale={sheepScale} sheepAnimation={"Walker"} /> */}
 

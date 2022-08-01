@@ -19,7 +19,7 @@ export default function Model(props) {
   
   const group = useRef();
   const { materials, animations, scene } = useGLTF(
-    "/NEWSheepModelwAnimations3.gltf"
+    "/NEWSheepModelwAnimations3.glb"
   );
   const { actions } = useAnimations(animations, group);
 
@@ -78,6 +78,7 @@ export default function Model(props) {
     setSheepColor(sheepColor => getRandomColor());
     actions.Spawning.reset();
     actions.Spawning.setLoop(THREE.LoopOnce).play();
+    console.log(props.name)
   }
 
   /*******************/
