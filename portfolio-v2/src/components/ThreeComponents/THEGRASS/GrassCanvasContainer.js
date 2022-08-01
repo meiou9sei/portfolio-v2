@@ -24,11 +24,12 @@ const walkersMaxZ = -25;
 
 //spawns random number of sheep 
 const minSheepCount = 1;
-const maxSheepCount = 10;
+const maxSheepCount = 1;
 const sheepCount = getRandomInt(minSheepCount, maxSheepCount);
 let sheepGroup = [];
 let sheepXPosArray = []; //keeps track of Xs already used for sheep spawn, so 2 sheep don't spawn on top of eachother
 let defaultSheepSpawnX = returnPosWithinScreen();
+let defaultSheepSpawnZ = getRandomInt(spawnPosMaxZ, 5);
 //scroll down for sheep spawner formula
 //i starts at 1, as one eater sheep will spawn by default, within scren width
 console.log(sheepCount);
@@ -93,7 +94,7 @@ const GrassCanvasContainer = () => {
 
             { sheepGroup } 
             {/*"godsChosenSheep" will spawn 1 eater within screen width"*/}          
-            <RevivedAnimatedSheep position={[defaultSheepSpawnX, -1, 0]} name={"godsChosenSheep"} scale={sheepScale} sheepAnimation={"Eater"} />
+            <RevivedAnimatedSheep position={[defaultSheepSpawnX, -1, defaultSheepSpawnZ]} name={"godsChosenSheep"} scale={sheepScale} sheepAnimation={"Eater"} />
 
             {/* <RevivedAnimatedSheep position={[-9, -1, 0]} name={"landmarkSheep"} scale={sheepScale} sheepAnimation={"Walker"} /> */}
 
@@ -156,10 +157,10 @@ function getUniqueInt(array, min, max) {
 //default sheep ("godsChosenSheep")
 function returnPosWithinScreen() {
     //per 100 px sWidth, can spawn -3 or 3 X range
-    let sWidth = window.screen.width / 100;
-    //console.log(sWidth);
+    let sWidth = window.innerWidth / 100;
+    console.log(sWidth);
     let spawnXLocation = getRandomInt(-sWidth * 3, sWidth * 3);
-    //console.log("default sheep spawned at " + spawnXLocation);
+    console.log("default sheep spawned at " + spawnXLocation);
     sheepXPosArray.push(spawnXLocation);
     return spawnXLocation;
 }
@@ -209,12 +210,15 @@ function getRandomSheepAnimation() {
     let godsNum = getRandomNum(0, 1);
     let godsCommand = "TPose";
 
-    if (godsNum < 0.5) {
+    if (godsNum < 0.4) {
         //console.log("YOU SHALL BE AN EATER");
         godsCommand = "Eater";
-    } else {
+    } else if (godsNum < 0.9) {
         //console.log("YOU SHALL BE A WALKER");
         godsCommand = "Walker";
+    } else {
+        //console.log("YOU SHALL BE A STANDER");
+        godsCommand = "TPoser";
     }
 
     return godsCommand;
