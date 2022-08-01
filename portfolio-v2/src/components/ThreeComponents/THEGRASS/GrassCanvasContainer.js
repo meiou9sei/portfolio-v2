@@ -210,10 +210,10 @@ function getRandomSheepAnimation() {
     let godsNum = getRandomNum(0, 1);
     let godsCommand = "TPose";
 
-    if (godsNum < 0.4) {
+    if (godsNum < 0.5) {
         //console.log("YOU SHALL BE AN EATER");
         godsCommand = "Eater";
-    } else if (godsNum < 0.9) {
+    } else if (godsNum < 0.7) {
         //console.log("YOU SHALL BE A WALKER");
         godsCommand = "Walker";
     } else {

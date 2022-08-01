@@ -144,8 +144,8 @@ export default function Model(props) {
     if (godsCommand !== "Walker") {
       group.current.rotation.y = yAngle;
       //setYAngle(yAngle => getRandomNum(0, TAU)) //uncomment to make em spin
-    } else {
-      
+    } else if (godsCommand === "Spinner" ) {
+      setYAngle(yAngle => getRandomNum(0, TAU)) //uncomment to make em spin      
       
     }
   }
