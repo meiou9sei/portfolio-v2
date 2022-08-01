@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/portfolio-v2/static/css/main.66bfb4d5.css",
+    "main.js": "/portfolio-v2/static/js/main.5704504f.js",
+    "static/media/blade_diffuse.jpg": "/portfolio-v2/static/media/blade_diffuse.afc6a995c517c5c0bb32.jpg",
+    "static/media/blade_alpha.jpg": "/portfolio-v2/static/media/blade_alpha.fd72bbc9635d5a296576.jpg",
+    "index.html": "/portfolio-v2/index.html",
+    "main.66bfb4d5.css.map": "/portfolio-v2/static/css/main.66bfb4d5.css.map",
+    "main.5704504f.js.map": "/portfolio-v2/static/js/main.5704504f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.66bfb4d5.css",
+    "static/js/main.5704504f.js"
+  ]
+}
