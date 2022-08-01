@@ -29,7 +29,7 @@ const sheepCount = getRandomInt(minSheepCount, maxSheepCount);
 let sheepGroup = [];
 let sheepXPosArray = []; //keeps track of Xs already used for sheep spawn, so 2 sheep don't spawn on top of eachother
 let defaultSheepSpawnX = returnPosWithinScreen();
-let defaultSheepSpawnZ = getRandomInt(5, 8);
+let defaultSheepSpawnZ = getRandomInt(9, 12);
 //scroll down for sheep spawner formula
 //i starts at 1, as one eater sheep will spawn by default, within scren width
 console.log(sheepCount);
@@ -55,8 +55,8 @@ for (let i = 1; i < sheepCount; i++) {
 /* OTHER SETTINGS */
 /******************/
 /* camera */
-const cameraPosition = [0, 2, 10];
-const cameraFOV = 50;
+const cameraPosition = [0, 2, 15];
+const cameraFOV = 35;
 
 /* grass */
 const grassPlotSize = 0.75;
@@ -157,7 +157,7 @@ function getUniqueInt(array, min, max) {
 //default sheep ("godsChosenSheep")
 function returnPosWithinScreen() {
     //per 100 px sWidth, can spawn -3 or 3 X range
-    let sWidth = window.innerWidth / 100;
+    let sWidth = window.innerWidth / 150; //should be 100 usually
     console.log(sWidth);
     let spawnXLocation = getRandomInt(-sWidth, sWidth);
     console.log("default sheep spawned at " + spawnXLocation);
