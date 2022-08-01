@@ -24,12 +24,12 @@ const walkersMaxZ = -25;
 
 //spawns random number of sheep 
 const minSheepCount = 1;
-const maxSheepCount = 1;
+const maxSheepCount = 15;
 const sheepCount = getRandomInt(minSheepCount, maxSheepCount);
 let sheepGroup = [];
 let sheepXPosArray = []; //keeps track of Xs already used for sheep spawn, so 2 sheep don't spawn on top of eachother
 let defaultSheepSpawnX = returnPosWithinScreen();
-let defaultSheepSpawnZ = getRandomInt(spawnPosMaxZ, 5);
+let defaultSheepSpawnZ = getRandomInt(5, 8);
 //scroll down for sheep spawner formula
 //i starts at 1, as one eater sheep will spawn by default, within scren width
 console.log(sheepCount);
@@ -94,7 +94,7 @@ const GrassCanvasContainer = () => {
 
             { sheepGroup } 
             {/*"godsChosenSheep" will spawn 1 eater within screen width"*/}          
-            <RevivedAnimatedSheep position={[defaultSheepSpawnX, -1, defaultSheepSpawnZ]} name={"godsChosenSheep"} scale={sheepScale} sheepAnimation={"Eater"} />
+            <RevivedAnimatedSheep position={[defaultSheepSpawnX, -1, defaultSheepSpawnZ]} name={"godsChosenSheep"} scale={sheepScale} sheepAnimation={"TPoser"} />
 
             {/* <RevivedAnimatedSheep position={[-9, -1, 0]} name={"landmarkSheep"} scale={sheepScale} sheepAnimation={"Walker"} /> */}
 
@@ -159,7 +159,7 @@ function returnPosWithinScreen() {
     //per 100 px sWidth, can spawn -3 or 3 X range
     let sWidth = window.innerWidth / 100;
     console.log(sWidth);
-    let spawnXLocation = getRandomInt(-sWidth * 3, sWidth * 3);
+    let spawnXLocation = getRandomInt(-sWidth, sWidth);
     console.log("default sheep spawned at " + spawnXLocation);
     sheepXPosArray.push(spawnXLocation);
     return spawnXLocation;
