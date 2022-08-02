@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import Grass from "./Grass";
-import CameraController from "../CameraController";
-import { PerspectiveCamera } from "three";
+// import CameraController from "../CameraController";
+// import { PerspectiveCamera } from "three";
 import RevivedAnimatedSheep from './../RevivedAnimatedSheep';
 
 /******************/
@@ -64,13 +64,13 @@ const cameraFOV = 35;
 const grassPlotSize = 0.75;
 const grassPlotPosition = [0, -0.5, 0];
 
-/* to help set up camera - use w/ orbital controls on to place camera */
-function CameraHelper() {
-    const camera = new PerspectiveCamera(cameraFOV, 8, 2, 25);
-    return <group position={ cameraPosition } >
-        <cameraHelper args={[camera]} />
-    </group>;
-}
+// /* to help set up camera - use w/ orbital controls on to place camera */
+// function CameraHelper() {
+//     const camera = new PerspectiveCamera(cameraFOV, 8, 2, 25);
+//     return <group position={ cameraPosition } >
+//         <cameraHelper args={[camera]} />
+//     </group>;
+// }
 
 /**********/
 /* CANVAS */
@@ -164,17 +164,17 @@ function returnPosWithinScreen() {
     //console.log(sWidth);
     let spawnXLocation = getUniqueInt(sheepXPosArray, -sWidth, sWidth);
     //console.log("default sheep spawned at " + spawnXLocation);
-    console.log(spawnXLocation);
+    //console.log(spawnXLocation);
     let temp;
     if (spawnXLocation !== 0) {
         if (!spawnXLocation) {
-            console.log('enteredthebeast, sheepXPosArray[0] is ' + sheepXPosArray[0])
+            //console.log('enteredthebeast, sheepXPosArray[0] is ' + sheepXPosArray[0])
             if (sheepXPosArray[0] < 0) {
                 temp = sheepXPosArray[0] + 2;
             } else {
                 temp = sheepXPosArray[0] - 2;
             }
-            console.log(spawnXLocation + "    " + temp);
+            //console.log(spawnXLocation + "    " + temp);
             sheepXPosArray.push(temp);
             return temp;
         }

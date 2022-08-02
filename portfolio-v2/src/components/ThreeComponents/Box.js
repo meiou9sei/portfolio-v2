@@ -1,12 +1,12 @@
-import { Canvas } from "@react-three/fiber";
+// import { Canvas } from "@react-three/fiber";
 
-const Box = ({position}) => {
-    return ( 
-      <mesh>
-        <boxBufferGeometry attach="geometry" />
-        <meshLambertMaterial attach="material" color="yellow" />
-      </mesh>
-     );
-}
+// const Box = ({position}) => {
+//     return ( 
+//       <mesh>
+//         <boxBufferGeometry attach="geometry" />
+//         <meshLambertMaterial attach="material" color="yellow" />
+//       </mesh>
+//      );
+// }
  
-export default Box;
+// export default Box;

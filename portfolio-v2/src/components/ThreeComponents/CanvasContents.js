@@ -1,16 +1,16 @@
 //general imports
 import CameraController from "./CameraController";
-import Box from "./Box";
+// import Box from "./Box";
 
 //stars 
 import { Stars } from "@react-three/drei";
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber'
 
 //sheep
-import AnimatedSheep from "./AnimatedSheep";
-import RevivedAnimatedSheep from "./RevivedAnimatedSheep";
-import Box2 from "./Box2";
+// import AnimatedSheep from "./AnimatedSheep";
+// import RevivedAnimatedSheep from "./RevivedAnimatedSheep";
+// import Box2 from "./Box2";
 
 
 const CanvasContents = () => {

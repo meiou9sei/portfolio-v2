@@ -1,9 +1,9 @@
 //imports general
 import { Canvas } from "@react-three/fiber";
-import Box from "./Box";
-import Box2 from "./Box2";
-import Sheep from "./Sheep";
-import AnimatedSheep from "./AnimatedSheep";
+// import Box from "./Box";
+// import Box2 from "./Box2";
+// import Sheep from "./Sheep";
+// import AnimatedSheep from "./AnimatedSheep";
 
 //canvas contents
 import CanvasContents from "./CanvasContents";
@@ -23,15 +23,15 @@ import CanvasContents from "./CanvasContents";
 // import AnimatedSheep10 from "./AnimatedSheepFarm/AnimatedSheep10";
 
 
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min); 
-}
+// function getRandomInt(min, max) {
+//     min = Math.ceil(min);
+//     max = Math.floor(max);
+//     return Math.floor(Math.random() * (max - min) + min); 
+// }
 
-function getRandomNum(min, max) {
-    return Math.random() * (max - min) + min;
-}
+// function getRandomNum(min, max) {
+//     return Math.random() * (max - min) + min;
+// }
 
 // let sheepKey = 0;
 // //super hacky, but I made 10 different sheep components and spawn a random number of them
