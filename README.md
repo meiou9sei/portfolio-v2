@@ -7,3 +7,5 @@ goals:
 - incorporate 3js (through react-three-fiber)
 
 Creating a react app from the groundup to gain a better understanding of react, and to make it fancy / learn three.js
+
+link to portfolio-v1: https://github.com/meiou9sei/portfolio-v1
