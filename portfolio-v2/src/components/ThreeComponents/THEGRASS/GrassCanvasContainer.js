@@ -228,7 +228,7 @@ function getRandomSheepAnimation() {
     let godsNum = getRandomNum(0, 1);
     let godsCommand = "TPose";
 
-    if (godsNum < 0.7) {
+    if (godsNum < 0.6) {
         //console.log("YOU SHALL BE AN EATER");
         godsCommand = "Eater";
     } else if (godsNum < 0.75) {
