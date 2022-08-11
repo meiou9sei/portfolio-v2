@@ -1,4 +1,4 @@
-//this page does not use react components as it will be removed later
+//this page used to be MAIP required blogs - quickly reformatted to be a projects showcase
 
 const BlogPage = () => {
     return (
@@ -12,7 +12,7 @@ const BlogPage = () => {
                 <h2>Large Projects 🧰</h2>
                 <div className="about-me-mini">
                     <div className="title-description-container">
-                        <h3><a href="https://camerona.vvampa.to">Portfolio v2</a></h3>
+                        <h3>Portfolio v2</h3>
                         <p>Independent project for Elephant Internship</p>
                     </div>
                     <img src="/projects-images/portfolio-v2.gif" alt="demo of my portfolio site"/>

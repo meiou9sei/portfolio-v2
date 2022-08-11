@@ -31,6 +31,7 @@ const AboutMe = () => {
             <div className="experience about-me-section">
                 <h2>Experience ⚙️</h2>
                 <AboutMeMini {...aboutMeMinis.mini5} genNewId={newId} /> {/* Elephant / MAIP */}
+                <li><a href="https://elephant.is" style={{color: 'blue'}}>Elephant Site</a></li>
                 <AboutMeMini {...aboutMeMinis.mini6} genNewId={newId} /> {/* PoliSci UCF */}
             </div>
 
