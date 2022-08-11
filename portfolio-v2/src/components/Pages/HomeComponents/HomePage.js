@@ -1,5 +1,6 @@
 import AboutMe from "./AboutMe";
 import Hero from "./Hero";
+import CanvasGeneral from "./../../ThreeComponents/CanvasContainer";
 
 //css
 import '../../../css/home.scss'
@@ -7,6 +8,7 @@ import '../../../css/home.scss'
 const HomePage = () => {
     return ( 
         <div>
+            <CanvasGeneral />
             <main>
                 <Hero />
                 <AboutMe />

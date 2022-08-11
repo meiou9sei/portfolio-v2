@@ -1,4 +1,3 @@
-//components
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from './components/Pages/HomeComponents/HomePage';
 import BlogPage from './components/Pages/BlogComponents/BlogPage';
@@ -7,7 +6,6 @@ import ContactPage from './components/Pages/ContactComponents/ContactPage';
 import Header from './components/Pages/Header';
 import Footer from "./components/Pages/Footer";
 
-import CanvasGeneral from "./components/ThreeComponents/CanvasContainer";
 import GrassCanvasContainer from './components/ThreeComponents/THEGRASS/GrassCanvasContainer';
 
 
@@ -26,7 +24,7 @@ function App() {
             <Route exact path={["/", "/index"]}>
               <HomePage />
             </Route>
-            <Route path="/s/blog">
+            <Route path="/s/projects">
               <BlogPage />
             </Route>
             <Route path="/s/resume">
@@ -38,7 +36,6 @@ function App() {
           </Switch>
         </div>
 
-        <CanvasGeneral />
         <GrassCanvasContainer />
 
         <Footer />
