@@ -1,4 +1,4 @@
-*this page may be outdated. working on v3 as of writing this https://github.com/meiou9sei/portfolio-v2.1*
+working on v3 as of writing this https://github.com/meiou9sei/portfolio-v2.1*
 
 live at https://camerona.vvampa.to/
 
